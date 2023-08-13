@@ -1,0 +1,242 @@
+$Fighting: #e74347;
+$Rock: #c5b489;
+$Ghost: #7773d4;
+$Flying: #a6c2f2;
+$Fairy: #f3a7e7;
+$Electric: #edd53e;
+$Dragon: #0c69c8;
+$Grass: #52f618;
+$Fire: #e87912;
+$Water: #15c4dc;
+$Ground: #d29463;
+$Bug: #82ca28;
+$Dark: #2b2b36;
+$Poison: #a864c7;
+$Psychic: #fe9f92;
+$Steel: #58a6aa;
+$Ice: #8cddd4;
+$Normal: #a3a49e;
+$Neutral-100: #ffffff;
+$Neutral-200: #c6c6c6;
+$Neutral-300: #aaaaaa;
+$Neutral-400: #8e8e8e;
+$Neutral-500: #717171;
+$Neutral-600: #555555;
+$Neutral-700: #393939;
+$Neutral-800: #1c1c1c;
+$Neutral-900: #000000;
+$Primary-400: #3e4444;
+$Primary-300: #444c4c;
+$Primary-100: #5c6666;
+$Primary-200: #545c5c;
+$Primary: #4c5454;
+$Secondary-300: #ff3910;
+$Secondary-100: #ff8369;
+$Secondary-400: #ff2b00;
+$Secondary-200: #ff6343;
+$Secondary: #ff4b26;
+
+@font-face {
+  font-family: Concert One;
+  src: url("./assets/font/ConcertOne-Regular.ttf");
+}
+
+@font-face {
+  font-family: Cabin;
+  src: url("./assets/font/Cabin-VariableFont_wdth\,wght.ttf");
+}
+
+@mixin desktop-body-m-b() {
+  /* Desktop/Body - Medium - Bold */
+  font-family: Cabin;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 24px */
+  letter-spacing: 1px;
+}
+
+@mixin desktop-body-l-b() {
+  /* Desktop/Body - Large - Bold */
+  font-family: Cabin;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 27px */
+  letter-spacing: 1px;
+}
+
+@mixin desktop-body-l-r() {
+  /* Desktop/Body - Large - Regular */
+  font-family: Cabin;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 27px */
+  letter-spacing: 1px;
+}
+
+@mixin desktop-h1() {
+  /* Desktop/H1 */
+  font-family: Concert One;
+  font-size: 72px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 105%; /* 75.6px */
+  letter-spacing: 5px;
+}
+
+@mixin flex($vertical: center, $horizontal: center, $direction: row, $gap: 0) {
+  display: flex;
+  justify-content: $vertical;
+  align-items: $horizontal;
+  flex-direction: $direction;
+  gap: $gap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: $Neutral-100;
+  font-family: Concert One;
+  font-size: 72px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 105%;
+  letter-spacing: 5px;
+}
+
+#root{
+	height: 100vh;
+  width: 100vw;
+  background-color: $Neutral-800;
+}
+
+.navbar {
+  @include flex(space-between, center, row);
+  background-color: $Neutral-900;
+  padding: 15px 70px;
+
+  img {
+    height: 30px;
+    object-fit: contain;
+  }
+
+  .left-part {
+    color: $Neutral-700;
+    display: flex;
+    align-items: flex-start;
+    gap: 45px;
+
+    div {
+      @include flex(center, center, row, 10px);
+      height: 35px;
+      cursor: pointer;
+    }
+
+    div:hover {
+      text-decoration: underline;
+      text-underline-offset: 5px;
+      text-decoration-color: $Secondary;
+      border-radius: 5px;
+    }
+
+    p {
+      @include desktop-body-m-b();
+      color: $Primary;
+      cursor: pointer;
+    }
+  }
+}
+
+.body-home {
+  @include flex(center, space-between, column, 50px);
+  padding: 0px 150px;
+  align-self: stretch;
+	height: au;
+  background-color: $Neutral-800;
+
+  .container {
+    display: flex;
+    padding: 35px 0px;
+    justify-content: space-between;
+    align-items: center;
+
+    .right-part {
+      @include flex(center, flex-start, column, 35px);
+      width: 568px;
+
+      h1 {
+        @include desktop-h1();
+        color: $Neutral-100;
+      }
+
+      p {
+        @include desktop-body-l-r();
+        color: $Neutral-200;
+      }
+    }
+
+    .left-part {
+      position: relative;
+
+      #reshiram {
+        position: absolute;
+        top: 65px;
+        left: 50px;
+        z-index: 2;
+      }
+
+      #reshiramGradient {
+        position: absolute;
+        width: 508px;
+        height: 478px;
+        flex-shrink: 0;
+        top: 0px;
+        left: 0px;
+        fill: linear-gradient(137deg, #391501 0%, #d84213 100%);
+        filter: blur(58.6349983215332px);
+        z-index: 1;
+      }
+    }
+
+    .btn-home {
+      display: flex;
+      align-items: center;
+      gap: 35px;
+
+      button {
+        @include flex(center, flex-start, column, 10px);
+        @include desktop-body-l-b();
+        padding: 10px;
+        color: $Neutral-100;
+        border-radius: 8px;
+        background: var(--neutral-neutral-700, #393939);
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+      }
+    }
+  }
+}
+
+.footer {
+  background: $Neutral-900;
+  @include flex(center, center, row, 25px);
+  height: 70px;
+  padding: 15px 70px;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+	position: absolute;
+	bottom: 0;
+	width: 100vw;
+
+  p {
+    @include desktop-body-m-b();
+    color: $Primary;
+    cursor: pointer;
+  }
+}
