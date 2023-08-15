@@ -1,6 +1,6 @@
-import reshiram from '../../assets/images/home/reshiram.svg'
-import reshiramShadow from '../../assets/images/home/reshiramShadow.svg'
-import reshiramGradient from '../../assets/images/home/reshiramGradient.png'
+import reshiram from '../assets/images/home/reshiram.svg'
+import reshiramShadow from '../assets/images/home/reshiramShadow.svg'
+import reshiramGradient from '../assets/images/home/reshiramGradient.png'
 
 
 function Body() {

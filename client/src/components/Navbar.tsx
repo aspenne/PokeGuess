@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from '../assets/images/navbar/logo.svg';
 import angel from '../assets/images/navbar/angel.svg';
 import ghost from '../assets/images/navbar/ghost.svg';
@@ -8,40 +8,54 @@ import angelHover from '../assets/images/navbar/angelHover.svg';
 import ghostHover from '../assets/images/navbar/ghostHover.svg';
 import pokedexHover from '../assets/images/navbar/pokedexHover.svg';
 import accountHover from '../assets/images/navbar/accountHover.svg';
+import { Link } from 'react-router-dom';
 
-function Navbar() {
-  const [classicImageSrc, setClassicImageSrc] = useState(angel);
-  const [shadowImageSrc, setShadowImageSrc] = useState(ghost);
-  const [pokedexImageSrc, setPokedexImageSrc] = useState(pokedex);
-  const [accountImageSrc, setAccountImageSrc] = useState(account);
+type NavItemProps = {
+  id: string;
+  imageActive: string;
+  passiveImage: string;
+  hoverImage: string;
+  text: string;
+  active: boolean;
+};
 
-  const hoverClassic = () => {
-    setClassicImageSrc(angelHover);
-  };
-  const outClassic = () => {
-    setClassicImageSrc(angel);
+type NavbarProps = {
+  activeItem: string;
+};
+
+const Navbar: React.FC<NavbarProps> = ({ activeItem }) => {
+  const [navItems, setNavItems] = useState<NavItemProps[]>([
+    { id: 'classic', imageActive: angel, passiveImage: angel, hoverImage: angelHover, text: 'Classic guess', active: false},
+    { id: 'shadow', imageActive: ghost, passiveImage: ghost, hoverImage: ghostHover, text: 'Shadow Guess', active: false},
+    { id: 'pokedex', imageActive: pokedex, passiveImage: pokedex, hoverImage: pokedexHover, text: 'Pokédex', active: false},
+    { id: 'account', imageActive: account, passiveImage: account, hoverImage: accountHover, text: 'Connecté', active: false},
+  ]);
+
+  useEffect(() => {
+    const updatedNavItems = navItems.map((item) =>
+      item.id === activeItem ? { ...item, imageActive: item.hoverImage, active: true } : item
+    );
+    setNavItems(updatedNavItems);
+  }, [activeItem]);
+
+  const handleMouseOver = (itemId: string) => {
+    if (activeItem !== itemId) {
+      const updatedNavItems = navItems.map((item) =>
+        item.id === itemId ? { ...item, imageActive: item.hoverImage} : item
+      );
+      setNavItems(updatedNavItems);
+    }
   };
 
-  const hoverShadow = () => {
-    setShadowImageSrc(ghostHover);
-  };
-  const outShadow = () => {
-    setShadowImageSrc(ghost);
-  };
-
-  const hoverPokedex = () => {
-    setPokedexImageSrc(pokedexHover);
-  };
-  const outPokedex = () => {
-    setPokedexImageSrc(pokedex);
+  const handleMouseOut = (itemId: string) => {
+    if (activeItem !== itemId) {
+      const updatedNavItems = navItems.map((item) =>
+        item.id === itemId ? { ...item, imageActive: item.passiveImage } : item
+      );
+      setNavItems(updatedNavItems);
+    }
   };
 
-  const hoverAccount = () => {
-    setAccountImageSrc(accountHover);
-  };
-  const outAccount = () => {
-    setAccountImageSrc(account);
-  };
 
   return (
     <div className="navbar">
@@ -49,22 +63,19 @@ function Navbar() {
         <img src={logo} alt="logo" />
       </div>
       <div className="left-part">
-        <div id='classic' onMouseOver={hoverClassic} onMouseOut={outClassic}>
-          <img src={classicImageSrc} alt="classic guess" />
-          <p> Classic guess </p>
-        </div>
-        <div id='shadow' onMouseOver={hoverShadow} onMouseOut={outShadow}>
-          <img src={shadowImageSrc} alt="shadow guess" />
-          <p> Shadow Guess</p>
-        </div>
-        <div id='pokedex' onMouseOver={hoverPokedex} onMouseOut={outPokedex}>
-          <img src={pokedexImageSrc} alt="pokedex" />
-          <p> Pokédex </p>
-        </div>
-        <div id='account' onMouseOver={hoverAccount} onMouseOut={outAccount}>
-          <img src={accountImageSrc} alt="account" />
-          <p> Connecté </p>
-        </div>
+        {navItems.map((item) => (
+          <Link key={item.id} to={`/${item.id}`}>
+            <div
+              id={item.id}
+              onMouseOver={() => handleMouseOver(item.id)}
+              onMouseOut={() => handleMouseOut(item.id)}
+              className={item.active ? 'active' : ''}
+            >
+            <img src={item.imageActive} alt={item.text} />
+            <p>{item.text}</p>
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
   );
