@@ -35,6 +35,10 @@ $Secondary-100: #ff8369;
 $Secondary-400: #ff2b00;
 $Secondary-200: #ff6343;
 $Secondary: #ff4b26;
+$pokemon-gradient-dark: radial-gradient(116.31% 116.31% at 50.00% -16.31%, #383838 0%, #242424 100%);
+$small: 8px;
+$medium: 16px;
+$large: 24px;
 
 @font-face {
   font-family: Concert One;
@@ -98,6 +102,7 @@ $Secondary: #ff4b26;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  list-style: none;
 }
 
 h1 {
@@ -108,6 +113,15 @@ h1 {
   font-weight: 400;
   line-height: 105%;
   letter-spacing: 5px;
+}
+
+h3 {
+  font-family: Concert One;
+  font-size: 44px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  letter-spacing: 1px;
 }
 
 #root{
@@ -252,5 +266,248 @@ h1 {
     @include desktop-body-m-b();
     color: $Primary;
     cursor: pointer;
+  }
+}
+
+.pokedex-body{
+
+  @include flex(center, flex-start, column, 35px);
+  color: $Neutral-100;
+  padding: 0px 150px;
+  align-self: stretch;
+  background-color: $Neutral-800;
+
+  .pokedex-content{
+    @include flex(center, center, column, 75px);
+    display: flex;
+    padding: 35px 0px;
+    align-self: stretch;
+
+    .pokedex-btn{
+      display: flex;
+      align-items: center;
+      gap: 35px;
+    }
+
+    .pokedex-btn-passive{
+      @include flex(center, flex-start, column, 10px);
+      @include desktop-body-l-b(); 
+      color: $Neutral-100;
+      padding: 10px;
+      border-radius: $small;
+      background: $Neutral-700;
+      box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+
+      &:hover{
+        border-color: $Neutral-100;
+      }
+    }
+
+    .pokedex-btn-active{
+      @include flex(center, flex-start, column, 10px);
+      @include desktop-body-l-b();
+      padding: 10px;
+      border-radius: $small;
+      background: $Neutral-100;
+      box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+    }
+    
+    ul {
+      @include flex(center, flex-start, row, 20px);
+      align-items: flex-start;
+      align-content: flex-start;
+      align-self: stretch;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+.pokemonCard{
+
+  @include flex(center, center, column, 15px);
+  width: 350px;
+  height: 350px;
+  padding: 15px;
+  flex-shrink: 0;
+  border-radius: $medium;
+  background: $pokemon-gradient-dark;
+  
+  
+  article.nameType{
+    @include flex(center, flex-end, row, 15px);
+
+    div.types{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    img{
+      width: 45px;
+      height: 45px;
+    }
+
+  }
+
+  img.pokemon {
+    width: 320px;
+    height: 185px;
+    object-fit: contain;
+  }
+
+  button{
+    @include flex(center, flex-start, column, 10px);
+    @include desktop-body-l-b();
+    color: $Neutral-100;
+    padding: 10px;
+    border-radius: $small;
+    background-color: $Neutral-700;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+  }
+
+  .type-Plante {    
+
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $Grass;
+    }
+  }
+
+  .type-Feu {
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $Fire;
+    }
+  }
+
+  .type-Eau {
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $Water;
+    }
+  }
+
+  .type-Insecte {
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $Bug;
+    }
+  }
+
+  .type-Normal {
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $Normal;
+    }
+  }
+
+  .type-Electrik {
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $Electric;
+    }
+  }
+
+  .type-Poison {
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $Poison;
+    }
+  }
+
+  .type-Fee {
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $Fairy;
+    }
+  }
+
+  .type-Vol {
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $Flying;
+    }
+  }
+
+  .type-Combat {
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $Fighting;
+    }
+  }
+
+  .type-Spectre {
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $Ghost;
+    }
+  }
+
+  .type-Dragon {
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $Dragon;
+    }
+  }
+
+  .type-Glace {
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $Ice;
+    }
+  }
+
+  .type-Ténèbres {
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $Dark;
+    }
+  }
+
+  .type-Acier {
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $Steel;
+    }
+  }
+
+  .type-Roche {
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $Rock;
+    }
+  }
+
+  .type-Sol {
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $Ground;
+    }
+  }
+
+  .type-Psy {
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $Psychic;
+    }
   }
 }

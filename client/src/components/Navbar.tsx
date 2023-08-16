@@ -59,9 +59,11 @@ const Navbar: React.FC<NavbarProps> = ({ activeItem }) => {
 
   return (
     <div className="navbar">
-      <div className="logo">
-        <img src={logo} alt="logo" />
-      </div>
+      <Link to={'/'}>
+        <div className="logo">
+          <img src={logo} alt="logo" />
+        </div>
+      </Link>
       <div className="left-part">
         {navItems.map((item) => (
           <Link key={item.id} to={`/${item.id}`}>
