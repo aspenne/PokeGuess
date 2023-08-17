@@ -1,6 +1,5 @@
-import React from 'react';
 import spriteImages from './sprites';
-import types from '../assets/images/types/bug.svg';
+import { Link } from 'react-router-dom';
 
 interface PokemonCardProps {
   type: string;
@@ -23,8 +22,10 @@ function PokemonCard({ type, type2, name, pokedexID }: PokemonCardProps){
         </div>
         <h3>{name}</h3>
       </article>
-      <img className='pokemon' src={imageUrl} alt={`pokemon number ${imageUrl}`}/>
-      <button className={primaryTypeClass}> En savoir plus</button>
+      <img className='pokemon' src={imageUrl} alt={`pokemon-${pokedexID}`}/>
+      <Link to={`/pokedex/${pokedexID}`}>
+        <button className={primaryTypeClass}> En savoir plus</button>
+      </Link>
     </section>
   );
 }

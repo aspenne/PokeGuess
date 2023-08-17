@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
-import { Link, Outlet } from 'react-router-dom'
-import Images from '../components/sprites'
 import PokemonCard from '../components/PokemonCard'
+import Autocomplete from '../components/AutocompletePokedex'
 
 export default function Pokedex() {
   const [pokemons, setPokemons] = useState([]);
@@ -14,7 +13,7 @@ export default function Pokedex() {
       setPokemons(data);
     })
     .catch(error => {
-        console.error('Erreur lors de la récupération des données:', error);
+        console.error('API Error (api/Pkmns): ', error);
     });
   }, []);
   
@@ -31,23 +30,21 @@ export default function Pokedex() {
             <button className='pokedex-btn-passive'> Mon Pokédex </button>
           </div>
           <div>
-            <button></button>
-            <button></button>
+              <Autocomplete/>
           </div>
-          <ul>
+          <ul className={'pokemon-list'}>
             {pokemons.map((pokemon, index) => (
-              <li key={index}>
-                <PokemonCard
-                  type={pokemon.type_1_name}
-                  type2={pokemon.type_2_name}
-                  name={pokemon.name_fr}
-                  pokedexID={pokemon.pokedexId}>
-                </PokemonCard>
-              </li>
+                <li key={index}>
+                  <PokemonCard
+                    type={pokemon.type_1_name}
+                    type2={pokemon.type_2_name}
+                    name={pokemon.name_fr}
+                    pokedexID={pokemon.pokedexId}>
+                  </PokemonCard>
+                </li>
             ))}
           </ul>
         </div>          
-        <Outlet/>
       </div>
     </div>
   )
