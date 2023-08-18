@@ -2,37 +2,40 @@ import { useEffect, useState } from 'react';
 import AutoCompleteGuess from '../components/AutocompleteGuess'
 import Navbar from '../components/Navbar'
 import PokemonClassicBar from '../components/PokemonClassicBar';
+import GuessBar from '../components/GuessBar';
 
 
 
-export default function ClassicBar() {
+export default function ClassicBar({onData}) {
   const [pokemons, setPokemons] = useState([]);
   const [pokemonId, setPokemonId] = useState(0);
   const [pokemonsIdName, setPokemonsIdName] = useState<{ name_fr: string, name_en: string, pokedexId: number }[]>([]);
+  const [childData, setChildData] = useState(0);
+
 
   const handleChildData = (data: number) => {
     setPokemonId(data);
   };
 
   useEffect(() => {
-    fetch('api/Pkmns')
+    fetch('/api/Pkmns')
     .then(response => response.json())
   .then(data => {
       setPokemons(data);
     })
     .catch(error => {
-        console.error('API Error (api/Pkmns): ', error);
+        console.error('/api Error (api/Pkmns): ', error);
     });
   }, []);
 
   useEffect(() => {
-    fetch('api/PkmnsIdName')
+    fetch('/api/PkmnsIdName')
     .then(response => response.json())
   .then(data => {
       setPokemonsIdName(data);
     })
     .catch(error => {
-        console.error('API Error (api/PkmnsIdName): ', error);
+        console.error('/api Error (api/PkmnsIdName): ', error);
     });
   }, []);
 
@@ -44,13 +47,15 @@ export default function ClassicBar() {
       <section className='classic-body'>
         <h1> Trouve le Pokémon</h1>
         <p>
-          Réussirez vous à retrouvez les 1009 Pokémons aux travers des 9 générations différentes 
-          ou bien encore de deviner qui se se cache sous cette forme
+          Réussirez vous à retrouver les 1009 Pokémons aux travers des 9 générations différentes 
+          ou bien encore de deviner qui se cache sous cette forme
         </p>
         <AutoCompleteGuess
           onData={handleChildData}
         />
-        <PokemonClassicBar/>
+        <GuessBar
+          id={pokemonId}
+        />
       </section>
     </div>
   )

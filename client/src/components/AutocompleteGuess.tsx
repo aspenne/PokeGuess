@@ -5,27 +5,27 @@ function zeroFill(number:number) {
   return String(number).padStart(4, '0');
 }
 
-export default function Autocomplete() {
+export default function Autocomplete({onData}) {
   const [value, setValue] = useState("");
   const [showSuggestion, setShowSuggestion] = useState(false);
   const [pokemonsIdName, setPokemonsIdName] = useState<{ name_fr: string, name_en: string, pokedexId: number }[]>([]);
-  const [childData, setChildData] = useState(0);
+  const [childData, setChildData] = useState(0)
 
-  const handleButtonClick = () => {
-    const newData = "Hello from child!";
+  const handleButtonClick = (pkmnId:number) => {
+    console.log(pkmnId)
+    const newData = pkmnId;
     setChildData(newData);
     onData(newData); 
   };
 
-
   useEffect(() => {
-    fetch('api/PkmnsIdName')
+    fetch('/api/PkmnsIdName')
     .then(response => response.json())
   .then(data => {
       setPokemonsIdName(data);
     })
     .catch(error => {
-        console.error('API Error (api/PkmnsIdName): ', error);
+        console.error('/api Error (api/PkmnsIdName): ', error);
     });
   }, []);
 
@@ -45,24 +45,24 @@ export default function Autocomplete() {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onFocus={() => setShowSuggestion(true)}
-          onBlur={() => setShowSuggestion(false)}
+          // onBlur={() => setShowSuggestion(false)}
           placeholder="Pikachu"
         />
       </div>
       
       {showSuggestion && (
-        <ul className="suggestions">
-          {suggestions.map((suggestion, index) => (
-          <div>
-            <li key={index} onClick={() => handleButtonClick()}>
-              <img src={`/src/assets/images/spritesPixel/${zeroFill(suggestion.id)}.jpg`} alt={suggestion.id.toString()} />
-              <p>{suggestion.name}</p>
-            </li>
-            <div className="line"></div>
-          </div>
-          ))}
-        </ul>
-      )}
+          <ul className="suggestions">
+            {suggestions.map((suggestion, index) => (
+            <div key={index} className={'pokemonBox'}>
+              <li onClick={() => handleButtonClick(suggestion.id)}>
+                <img src={`/src/assets/images/spritesPixel/${zeroFill(suggestion.id)}.jpg`} alt={suggestion.id.toString()} />
+                <p>{suggestion.name}</p>
+              </li>
+              <div className="line"></div>
+            </div>
+            ))}
+          </ul>
+        )}
     </div>
   );
 }

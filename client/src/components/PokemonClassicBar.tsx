@@ -7,24 +7,24 @@ export default function PokemonClassicBar() {
   const [pokemonsIdName, setPokemonsIdName] = useState<{ name_fr: string, name_en: string, pokedexId: number }[]>([]);
 
   useEffect(() => {
-    fetch('api/Pkmns')
+    fetch('/api/Pkmns')
     .then(response => response.json())
   .then(data => {
       setPokemons(data);
     })
     .catch(error => {
-        console.error('API Error (api/Pkmns): ', error);
+        console.error('/api Error (api/Pkmns): ', error);
     });
   }, []);
 
   useEffect(() => {
-    fetch('api/PkmnsIdName')
+    fetch('/api/PkmnsIdName')
     .then(response => response.json())
   .then(data => {
       setPokemonsIdName(data);
     })
     .catch(error => {
-        console.error('API Error (api/PkmnsIdName): ', error);
+        console.error('/api Error (api/PkmnsIdName): ', error);
     });
   }, []);
 
