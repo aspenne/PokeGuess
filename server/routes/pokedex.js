@@ -98,6 +98,7 @@ const getPokemonInfoQueryById = `
       Ta1.talent_name AS talent_1_name,
       Ta2.talent_name AS talent_2_name,
       Ta3.talent_name AS talent_3_name,
+      P.pokedexId,
       P.hp,
       P.atk,
       P.def,
@@ -120,6 +121,26 @@ const getPokemonInfoQueryById = `
       PokeGuess.Talents AS Ta3 ON P.talent_3 = Ta3.talent_id
   WHERE
       P.pokedexId = ?
+`;
+
+const getEvolutionById = `
+  SELECT 
+    E.pre_pokedexId, 
+    E.next_pokedexId, 
+    E.condition_evolution 
+  FROM 
+    PokeGuess.Evolutions as E
+  WHERE 
+    E.PokedexId = ?
+`;
+
+const getNameById = `
+  SELECT 
+    P.name_fr
+  FROM 
+    PokeGuess.Pokemon as P
+  WHERE 
+    P.PokedexId = ?
 `;
 
 router.get("/Pkmns", (req, res) => {
@@ -162,6 +183,52 @@ router.get("/Pkmn/:id", (req, res) => {
 
   connection.query(
     getPokemonInfoQueryById,
+    [pokemonId],
+    (err, results, fields) => {
+      if (err) {
+        console.error("Error executing query:", err);
+        return res
+          .status(500)
+          .json({ error: "An error occurred while fetching data" });
+      }
+      res.json(results);
+    }
+  );
+});
+
+router.get("/Evolution/:id", (req, res) => {
+  const { id } = req.params;
+  const pokemonId = parseInt(id);
+
+  if (isNaN(pokemonId) || pokemonId < 1 || pokemonId > 1010) {
+    return res.status(404).json({ error: "Invalid Pokémon ID" });
+  }
+
+  connection.query(
+    getEvolutionById,
+    [pokemonId],
+    (err, results, fields) => {
+      if (err) {
+        console.error("Error executing query:", err);
+        return res
+          .status(500)
+          .json({ error: "An error occurred while fetching data" });
+      }
+      res.json(results);
+    }
+  );
+});
+
+router.get("/PkmnName/:id", (req, res) => {
+  const { id } = req.params;
+  const pokemonId = parseInt(id);
+
+  if (isNaN(pokemonId) || pokemonId < 1 || pokemonId > 1010) {
+    return res.status(404).json({ error: "Invalid Pokémon ID" });
+  }
+
+  connection.query(
+    getNameById,
     [pokemonId],
     (err, results, fields) => {
       if (err) {
