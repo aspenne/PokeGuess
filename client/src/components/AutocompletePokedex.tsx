@@ -10,23 +10,16 @@ export default function Autocomplete() {
   const [value, setValue] = useState("");
   const [showSuggestion, setShowSuggestion] = useState(false);
   const [pokemonsIdName, setPokemonsIdName] = useState<{ name_fr: string, name_en: string, pokedexId: number }[]>([]);
-  const [childData, setChildData] = useState(0);
-
-  const handleButtonClick = () => {
-    const newData = "Hello from child!";
-    setChildData(newData);
-    onData(newData); 
-  };
 
 
   useEffect(() => {
-    fetch('api/PkmnsIdName')
+    fetch('/api/PkmnsIdName')
     .then(response => response.json())
   .then(data => {
       setPokemonsIdName(data);
     })
     .catch(error => {
-        console.error('API Error (api/PkmnsIdName): ', error);
+        console.error('/api Error (api/PkmnsIdName): ', error);
     });
   }, []);
 
@@ -46,6 +39,7 @@ export default function Autocomplete() {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onFocus={() => setShowSuggestion(true)}
+          // onBlur={() => setShowSuggestion(false)}
           placeholder="Pikachu"
         />
       </div>
@@ -53,13 +47,15 @@ export default function Autocomplete() {
       {showSuggestion && (
         <ul className="suggestions">
           {suggestions.map((suggestion, index) => (
-          <Link key={index} to={`/pokdex/${suggestion.id}`}>
-            <li key={index}>
-              <img src={`/src/assets/images/spritesPixel/${zeroFill(suggestion.id)}.jpg`} alt={suggestion.id.toString()} />
-              <p>{suggestion.name}</p>
-            </li>
-            <div className="line"></div>
-          </Link>
+          <div className={'pokemonBox'}>
+            <Link key={index} to={`/pokedex/${suggestion.id}`}>
+              <li key={index} className="pokedexAutocomplete">
+                <img src={`/src/assets/images/spritesPixel/${zeroFill(suggestion.id)}.jpg`} alt={suggestion.id.toString()} />
+                <p>{suggestion.name}</p>
+              </li>
+              <div className="line"></div>
+            </Link>
+          </div>
           ))}
         </ul>
       )}

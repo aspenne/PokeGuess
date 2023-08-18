@@ -7,13 +7,13 @@ export default function Pokedex() {
   const [pokemons, setPokemons] = useState([]);
 
   useEffect(() => {
-    fetch('api/Pkmns')
+    fetch('/api/Pkmns')
     .then(response => response.json())
   .then(data => {
       setPokemons(data);
     })
     .catch(error => {
-        console.error('API Error (api/Pkmns): ', error);
+        console.error('/api Error (api/Pkmns): ', error);
     });
   }, []);
   
