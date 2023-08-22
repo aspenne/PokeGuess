@@ -1,46 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import AutoCompleteGuess from '../components/AutocompleteGuess'
 import Navbar from '../components/Navbar'
-import PokemonClassicBar from '../components/PokemonClassicBar';
 import GuessBar from '../components/GuessBar';
+import Footer from '../components/Footer';
 
 
 
-export default function ClassicBar({onData}) {
-  const [pokemons, setPokemons] = useState([]);
+export default function ClassicBar() {
   const [pokemonId, setPokemonId] = useState(0);
-  const [pokemonsIdName, setPokemonsIdName] = useState<{ name_fr: string, name_en: string, pokedexId: number }[]>([]);
-  const [childData, setChildData] = useState(0);
 
 
   const handleChildData = (data: number) => {
     setPokemonId(data);
   };
 
-  useEffect(() => {
-    fetch('/api/Pkmns')
-    .then(response => response.json())
-  .then(data => {
-      setPokemons(data);
-    })
-    .catch(error => {
-        console.error('/api Error (api/Pkmns): ', error);
-    });
-  }, []);
-
-  useEffect(() => {
-    fetch('/api/PkmnsIdName')
-    .then(response => response.json())
-  .then(data => {
-      setPokemonsIdName(data);
-    })
-    .catch(error => {
-        console.error('/api Error (api/PkmnsIdName): ', error);
-    });
-  }, []);
-
   return (
     <div>
+      <div>
       <Navbar 
         activeItem="classic" 
       />
@@ -57,6 +33,9 @@ export default function ClassicBar({onData}) {
           id={pokemonId}
         />
       </section>
+      
+      </div>
+     <Footer/>
     </div>
   )
 }
