@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 
 interface PokemonCardProps {
   type: string;
-  type2: string;
+  type2: string | null;
   name: string;
-  pokedexID: string;
+  pokedexID: number;
 }
 
 function PokemonCard({ type, type2, name, pokedexID }: PokemonCardProps){
-  const imageIndex = parseInt(pokedexID) - 1;
+  const imageIndex = pokedexID - 1;
   const imageUrl = spriteImages[imageIndex];
   const primaryTypeClass = `type-${type}`;
 

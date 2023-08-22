@@ -3,8 +3,30 @@ import Navbar from '../components/Navbar'
 import PokemonCard from '../components/PokemonCard'
 import Autocomplete from '../components/AutocompletePokedex'
 
+interface Pokemon {
+  pokedexId: string;
+  generation: number;
+  category: string;
+  name_fr: string;
+  name_en: string;
+  type_1_name: string;
+  type_2_name: string | null;
+  talent_1_name: string | null;
+  talent_2_name: string | null;
+  talent_3_name: string | null;
+  hp: number;
+  atk: number;
+  def: number;
+  spe_atk: number;
+  spe_def: number;
+  vit: number;
+  height: string;
+  weight: string;
+  stade: number;
+}
+
 export default function Pokedex() {
-  const [pokemons, setPokemons] = useState([]);
+  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
   useEffect(() => {
     fetch('/api/Pkmns')
@@ -39,8 +61,8 @@ export default function Pokedex() {
                     type={pokemon.type_1_name}
                     type2={pokemon.type_2_name}
                     name={pokemon.name_fr}
-                    pokedexID={pokemon.pokedexId}>
-                  </PokemonCard>
+                    pokedexID={parseInt(pokemon.pokedexId)}
+                  />
                 </li>
             ))}
           </ul>

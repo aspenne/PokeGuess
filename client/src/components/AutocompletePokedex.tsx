@@ -8,9 +8,7 @@ function zeroFill(number:number) {
 
 export default function Autocomplete() {
   const [value, setValue] = useState("");
-  const [showSuggestion, setShowSuggestion] = useState(false);
   const [pokemonsIdName, setPokemonsIdName] = useState<{ name_fr: string, name_en: string, pokedexId: number }[]>([]);
-
 
   useEffect(() => {
     fetch('/api/PkmnsIdName')
@@ -38,13 +36,15 @@ export default function Autocomplete() {
           type="text"
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          onFocus={() => setShowSuggestion(true)}
-          // onBlur={() => setShowSuggestion(false)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && suggestions.length > 0) {
+              window.location.href = `/pokedex/${suggestions[0].id}`;
+            }
+          }}
           placeholder="Pikachu"
         />
       </div>
-      
-      {showSuggestion && (
+      {(value.length > 0 && suggestions.length > 0) && (
         <ul className="suggestions">
           {suggestions.map((suggestion, index) => (
           <div className={'pokemonBox'}>
