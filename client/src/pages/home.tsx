@@ -7,8 +7,10 @@ function App() {
   return (
     <div style={{height: "100%"}}>
       <Navbar activeItem="none" />
-			<Body/>
-			<Footer/>
+      <Body/>
+      <div className='footerHome'>
+        <Footer/>
+      </div>
     </div>
   )
 }
