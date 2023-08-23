@@ -50,3 +50,24 @@ CREATE Table PokeGuess.Evolutions(
     FOREIGN KEY FK_Evolution_Pokemon_pre (pre_pokedexId) REFERENCES PokeGuess.Pokemon(pokedexId),
     FOREIGN KEY FK_Evolution_Pokemon_next (next_pokedexId) REFERENCES PokeGuess.Pokemon(pokedexId)
 );
+
+-- Create Classic Daily Table
+CREATE Table PokeGuess.ClassicDaily(
+    id INT PRIMARY KEY,
+    Daily Date,
+    FOREIGN KEY FK_ClassicDaily_Pokemon_pokedexId (id) REFERENCES PokeGuess.Pokemon(pokedexId)
+);
+
+-- Create Shadow Daily Table
+CREATE Table PokeGuess.ShadowDaily(
+    id INT PRIMARY KEY,
+    Daily Date,
+    FOREIGN KEY FK_ShadowDaily_Pokemon_pokedexId (id) REFERENCES PokeGuess.Pokemon(pokedexId)
+);
+
+-- Create Shiny Daily Table
+CREATE Table PokeGuess.ShinyDaily(
+    id INT PRIMARY KEY,
+    Daily Date,
+    FOREIGN KEY FK_ShinyDaily_Pokemon_pokedexId (id) REFERENCES PokeGuess.Pokemon(pokedexId)
+);

@@ -115,7 +115,11 @@ export default function PokemonInfoStats() {
     { name: 'Vit', value: pokemon?.vit, max: false},
   ];
 
-  const maxValues = stats.map(stat => stat.value).sort((a, b) => b - a).slice(0, 2);
+  const maxValues = stats
+  .map(stat => stat.value)
+  .filter(value => value !== undefined)
+  .sort((a, b) => (b || 0) - (a || 0))
+  .slice(0, 2);
 
   stats.forEach(stat => {
     if (maxValues.includes(stat.value)) {
@@ -147,7 +151,7 @@ export default function PokemonInfoStats() {
             key={item.id}
             id={String(item.id)}
             style={{
-              color: item.active && pokemon ? typeColor[pokemon?.type_1_name] : '#ffffff',
+              color: item.active && pokemon ? typeColor[pokemon?.type_1_name as keyof typeof typeColor] : '#ffffff',
             }}
             className={item.active ? 'active' : ''}
             onClick={() => handleMouseOnClick(item.id)}
@@ -169,8 +173,8 @@ export default function PokemonInfoStats() {
                 <div
                   className={'barValue'}
                   style={{
-                    width: `${(item.value / 2.75)}%`,
-                    backgroundColor: item.max ? typeColor[pokemon.type_1_name] : undefined,
+                    width: `${(item.value ?? 0) / 2.75}%`,
+                    backgroundColor: item.max ? typeColor[pokemon?.type_1_name as keyof typeof typeColor] : undefined,
                   }}
                 />
                 </div>
@@ -188,8 +192,8 @@ export default function PokemonInfoStats() {
               <div>
                 <p 
                   className='bold'
-                  style={{ color: typeColor[pokemon.type_1_name]}}> 
-                  {item.condition_evolution ?? 'Précédente'} :
+                  style={{ color: typeColor[pokemon?.type_1_name as keyof typeof typeColor] ?? typeColor.Normal }}>
+                  {item.condition_evolution ?? 'Précédente'}
                 </p>
                 <div>
                   <img src={`/src/assets/images/spritesPixel/${zeroFill(Number(item.pre_pokedexId ?? item.next_pokedexId))}.jpg`} alt=''/>

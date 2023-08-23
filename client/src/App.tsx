@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Pokedex from './pages/Pokedex';
 import PokemonInfo from './pages/PokemonInfo';
 import Classic from './pages/ClassicGuess';
+import ShadowGuess from './pages/ShadowGuess';
 
 function App(){
 	return (
@@ -12,6 +13,7 @@ function App(){
 				<Route path='/pokedex' element={ <Pokedex/> }/>
 				<Route path='/pokedex/:id' element={ <PokemonInfo/> }/>
 				<Route path='/classic' element={ <Classic/> }/>
+				<Route path='/shadow' element={ <ShadowGuess/> }/>
 			</Routes>
 		</div>
 	)

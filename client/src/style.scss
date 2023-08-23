@@ -733,14 +733,17 @@ article.PokemonInfoStat{
   }
 }
 
+// later to rework 
+
 .classic-body{
   display: flex;
   padding: 35px 150px;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   gap: 35px;
   align-self: stretch;
+  min-height: 100vh;
   background-color: $Neutral-800;
 
   p{
@@ -757,13 +760,14 @@ section.guess-bar{
   align-self: stretch;
   background: $pokemon-gradient-dark;
   border-radius: $large;
+  @include desktop-body-l-r();
+  color: $Neutral-100;
+  
 
   ul{
     display: flex;
     flex-direction: row;
     width: 100%; 
-    @include desktop-body-l-r();
-    color: $Neutral-100;
 
     li{
       border: 1px solid $Neutral-100;
@@ -788,6 +792,24 @@ section.guess-bar{
       justify-content: center;
       text-align: center;
       overflow: auto;
+      opacity: 0;
+      transform: rotateY(180deg);
+      transition: opacity 0.75s ease, transform 1s ease;
+    }
+
+    $numItems: 12;
+
+    @for $i from 1 through $numItems {
+      li:nth-child(#{$i}) {
+        animation: fadeUpAnimation 0.75s ease ($i * 0.35s) forwards;
+      }
+    }
+    
+    @keyframes fadeUpAnimation {
+      to {
+        opacity: 1;
+        transform: rotateY(0deg);
+      }
     }
   }
 
@@ -796,4 +818,72 @@ section.guess-bar{
     flex-direction: row;
     width: 100%; 
   }
+
 }
+
+section.guess-bar-shadow{
+  @include flex(start, center, column, 10px);
+  padding: 27px 35px;
+  background: $pokemon-gradient-dark;
+  border-radius: $large;
+  @include desktop-body-l-r();
+  color: $Neutral-100;
+
+  ul{
+    display: flex;
+    flex-direction: row;
+    width: 100%; 
+
+    li{
+      width: 50%;
+      border: 1px solid $Neutral-100;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      flex-direction: column;
+      overflow: auto;
+    }
+  }
+
+  ul.pokemons{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    div{
+      display: flex;
+      flex-direction: row;
+    }
+
+    li{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+      text-align: center;
+      overflow: auto;
+      opacity: 0;
+      transform: rotateY(180deg);
+      transition: opacity 0.75s ease, transform 1s ease;
+    }
+
+    $numItems: 12;
+
+    @for $i from 1 through $numItems {
+      li:nth-child(#{$i}) {
+        animation: fadeUpAnimation 0.75s ease ($i * 0.35s) forwards;
+      }
+    }
+    
+    @keyframes fadeUpAnimation {
+      to {
+        opacity: 1;
+        transform: rotateY(0deg);
+      }
+    }
+  }
+}
+
+// 
