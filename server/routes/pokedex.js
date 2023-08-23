@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const dotenv = require("dotenv");
+const mysql = require("mysql2");
 
 const router = Router();
 dotenv.config();
@@ -9,7 +10,6 @@ const DB_USER = process.env.DB_USER;
 const DB_PASSWORD = process.env.DB_PASSWORD;
 const DB_DATABASE = process.env.DB_DATABASE;
 
-const mysql = require("mysql2");
 const connection = mysql.createConnection({
   host: DB_HOST,
   user: DB_USER,
@@ -123,6 +123,18 @@ const getPokemonInfoQueryById = `
       P.pokedexId = ?
 `;
 
+const getPokemonShadowById = `
+  SELECT 
+      P.pokedexId,
+      P.name_fr,
+      P.name_en
+  FROM
+      PokeGuess.Pokemon AS P
+  WHERE
+      P.pokedexId = ?
+`;
+
+
 const getEvolutionById = `
   SELECT 
     E.pre_pokedexId, 
@@ -143,6 +155,38 @@ const getNameById = `
     P.PokedexId = ?
 `;
 
+const getClassicPkmn = `
+  SELECT 
+    *
+  FROM 
+    PokeGuess.ClassicDaily 
+  ORDER BY 
+    daily DESC
+  LIMIT 1;
+`;
+
+const getShadowPkmn = `
+  SELECT 
+    *
+  FROM 
+    PokeGuess.ShadowDaily 
+  ORDER BY 
+    daily DESC
+  LIMIT 1;
+`;
+
+const getShinyPkmn = `
+  SELECT 
+    *
+  FROM 
+    PokeGuess.ShinyDaily 
+  ORDER BY 
+    daily DESC
+  LIMIT 1;
+`;
+
+
+
 router.get("/Pkmns", (req, res) => {
   connection.query(getPokemonsInfoQuery, (err, results, fields) => {
     if (err) {
@@ -155,6 +199,36 @@ router.get("/Pkmns", (req, res) => {
 
 router.get("/PkmnClassic", (req, res) => {
   connection.query(getPokemonsInfoQuery, (err, results, fields) => {
+    if (err) {
+      console.error("Error executing query:", err);
+      return;
+    }
+    res.json(results);
+  });
+});
+
+router.get("/PkmnClassicDaily", (req, res) => {
+  connection.query(getClassicPkmn, (err, results, fields) => {
+    if (err) {
+      console.error("Error executing query:", err);
+      return;
+    }
+    res.json(results);
+  });
+});
+
+router.get("/PkmnShadowDaily", (req, res) => {
+  connection.query(getShadowPkmn, (err, results, fields) => {
+    if (err) {
+      console.error("Error executing query:", err);
+      return;
+    }
+    res.json(results);
+  });
+});
+
+router.get("/PkmnShinyDaily", (req, res) => {
+  connection.query(getShinyPkmn, (err, results, fields) => {
     if (err) {
       console.error("Error executing query:", err);
       return;
@@ -242,12 +316,31 @@ router.get("/PkmnName/:id", (req, res) => {
   );
 });
 
-router.get("/PkmnsClassic/:id", (req, res) => {
+router.get("/PkmnClassic/:id", (req, res) => {
   const { id } = req.params;
   const pokemonId = parseInt(id);
 
   connection.query(
     getPokemonClassicById,
+    [pokemonId],
+    (err, results, fields) => {
+      if (err) {
+        console.error("Error executing query:", err);
+        return res
+          .status(500)
+          .json({ error: "An error occurred while fetching data" });
+      }
+      res.json(results);
+    }
+  );
+});
+
+router.get("/PkmnShadow/:id", (req, res) => {
+  const { id } = req.params;
+  const pokemonId = parseInt(id);
+
+  connection.query(
+    getPokemonShadowById,
     [pokemonId],
     (err, results, fields) => {
       if (err) {
