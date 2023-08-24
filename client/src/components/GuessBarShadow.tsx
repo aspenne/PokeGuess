@@ -25,27 +25,24 @@ export default function GuessBarShadow({ id, onData }:Props) {
   useEffect(() => {
     localStorage.setItem('pokemonsStorageShadow', JSON.stringify(pokemons))
     onData(pokemons); 
-  }, [])
+  }, [onData, pokemons])
+  
 
   useEffect(() => {
     fetch(`/api/PkmnShadow/${id}`)
       .then(response => response.json())
       .then(data => {
-        setPokemons(prevPokemons => [...prevPokemons, ...data]);
+        const newPokemons = data.filter(newPokemon => !pokemons.some(existingPokemon => existingPokemon.pokedexId === newPokemon.pokedexId));
+        
+        if (newPokemons.length > 0) {
+          setPokemons(prevPokemons => [...prevPokemons, ...newPokemons]);
+        } 
       })
       .catch(error => {
-        console.error('/api Error (api/PkmnClassic): ', error);
+        console.error('/api Error (api/PkmnShadow): ', error);
       });
-  }, [id]);
-
-  function pokemonFound(idGuess: number, id: number): string{
-    if ( id == idGuess){
-      return 'true';
-    }
-    else{
-      return 'false';
-    }
-  }
+  }, [id, pokemons]);
+  
   
   return (
     <section 

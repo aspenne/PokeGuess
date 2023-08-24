@@ -2,20 +2,9 @@ import { useState, useEffect } from "react";
 import search from '../assets/images/icons/vector.svg';
 
 interface PokemonData {
-  type_1_name: string;
-  type_2_name: string | null;
-  talent_1_name: string;
-  talent_2_name: string | null;
-  talent_3_name: string | null;
+  name_fr: string;
+  name_en: string;
   pokedexId: number;
-  hp: number;
-  atk: number;
-  def: number;
-  spe_atk: number;
-  spe_def: number;
-  vit: number;
-  stade: number;
-  generation: number;
 }
 
 function zeroFill(number:number) {
@@ -25,9 +14,10 @@ function zeroFill(number:number) {
 interface ClassicBarProps {
   onData: (data: number) => void;
   pokemonList: PokemonData[] | undefined;
+  pokemonFound: boolean;
 }
 
-export default function Autocomplete({onData, pokemonList}: ClassicBarProps) {
+export default function Autocomplete({onData, pokemonList, pokemonFound}: ClassicBarProps) {
   const [value, setValue] = useState("");
   const [pokemonsIdName, setPokemonsIdName] = useState<{ name_fr: string, name_en: string, pokedexId: number }[]>([]);
   const [filteredSuggestions, setFilteredSuggestions] = useState<{id:number, name:string}[]>([]);
@@ -82,6 +72,7 @@ export default function Autocomplete({onData, pokemonList}: ClassicBarProps) {
             }
           }}
           placeholder="Pikachu"
+          disabled={pokemonFound}
         />
       </div>
       { (value.length > 0 && filteredSuggestions.length > 0) && (
