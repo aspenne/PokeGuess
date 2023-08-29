@@ -8,5 +8,8 @@ export default defineConfig({
       '/api': 'http://localhost:5001'
     }
   },
+  optimizeDeps: {
+    exclude: ['canvas-confetti']
+  },
   plugins: [react()],
 })
