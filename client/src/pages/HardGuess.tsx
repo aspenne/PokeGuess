@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import AutoCompleteGuess from '../components/AutocompleteGuess'
 import Navbar from '../components/Navbar'
-import GuessBar from '../components/GuessBarClassic';
+import GuessBar from '../components/GuessBarHard';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom'
-import HellsHorns from '../assets/images/navbar/hells-horns.svg'
-import HellsHornsHover from '../assets/images/navbar/hells-hornsHover.svg'
+import angel from '../assets/images/navbar/angel.svg'
+import angelHover from '../assets/images/navbar/angelHover.svg'
 import Congrats from '../components/Congrats';
 import ParticlesConfetti from '../components/confetti';
 
@@ -29,29 +29,28 @@ interface PokemonData {
 export default function ClassicBar() {
   const [pokemonId, setPokemonId] = useState(0);
   const [pokemons, setPokemons] = useState<PokemonData[]>();
-  const [HellsIcon, setHellsIcon] = useState(HellsHorns);
   const [pokemonToGues, setPokemonToGuess] = useState<PokemonData>()
+  const [angelIcon, setAngelIcon] = useState(angel)
   const [showConfetti, setShowConfetti] = useState(false);
   const [showCongrats, setShowCongrats] = useState(false);
   const [pokemonFounded, setPokemonFounded] = useState<boolean>(false)
 
-
-  const handleChildDataId = (data: number) => {
+  const handleChildDataId = useCallback((data: number) => {
     setPokemonId(data);
-  };
+  }, []);
 
-  const handleChildDataPokemons = (data: PokemonData[]) => {
+  const handleChildDataPokemons = useCallback((data: PokemonData[]) => {
     setPokemons(data);
-  };
+  }, []);
 
   useEffect(() => {
-    fetch(`/api/PkmnClassicDaily`)
+    fetch(`/api/PkmnShinyDaily`)
       .then(response => response.json())
       .then(data => {
         setPokemonToGuess(data[0]);
       })
       .catch(error => {
-        console.error('/api Error (api/PkmnClassicDaily): ', error);
+        console.error('/api Error (api/PkmnShinyDaily): ', error);
       });
   }, []);
 
@@ -71,14 +70,14 @@ export default function ClassicBar() {
     <div>
       <div>
       <Navbar 
-        activeItem="classic" 
+        activeItem="hard" 
       />
       <Congrats
         pokemonId={Number(pokemonToGues?.pokedexId)}
         active={showCongrats}
         attempt={pokemons?.length}
-        isShiny={false}
-        page={'classic'}
+        isShiny={true}
+        page={'hard'}
       />
       <ParticlesConfetti
         active={showConfetti} 
@@ -102,13 +101,13 @@ export default function ClassicBar() {
           id={pokemonId}
           onData={handleChildDataPokemons}
         />
-        <Link to={`/Hard`}>
+        <Link to={`/Classic`}>
           <button
-              onMouseEnter={() => setHellsIcon(HellsHornsHover)}
-              onMouseLeave={() => setHellsIcon(HellsHorns)} >
-            <img src={HellsIcon} alt="hells horns" 
+              onMouseEnter={() => setAngelIcon(angelHover)}
+              onMouseLeave={() => setAngelIcon(angel)} >
+            <img src={angelIcon} alt="hells horns" 
             />
-            Hard Mode
+            Classic Mode
           </button>
         </Link>
       </section>

@@ -24,7 +24,7 @@ interface PokemonData {
   vit: number;
   stade: number;
   generation: number;
-  positionId: number;
+  positionId: number; 
 }
 
 interface talents {
@@ -38,10 +38,10 @@ interface Props {
   onData: (data: PokemonData[]) => void;
 }
 
-export default function GuessBarClassic({ id, onData }:Props) {
-  const [pokemonToGuess, setPokemonToGuess] = useState<PokemonData | undefined>()
+export default function GuessBarHard({ id, onData }:Props) {
+  const [pokemonToGuess, setPokemonToGuess] = useState<PokemonData | undefined>();
   const [pokemons, setPokemons] = useState<PokemonData[]>(() => {
-    const saved = localStorage.getItem("pokemonsStorageClassic");
+    const saved = localStorage.getItem("pokemonsStorageHard");
     const initialValue = saved ? JSON.parse(saved) : [];
     const uniquePokemons = initialValue.filter((item:PokemonData, index:number, self:PokemonData[]) =>
       self.findIndex(p => p.pokedexId === item.pokedexId) === index
@@ -51,10 +51,10 @@ export default function GuessBarClassic({ id, onData }:Props) {
 
   useEffect(() => {
     const sortedAndReversedPokemons = [...pokemons].sort((a, b) => a.positionId - b.positionId);
-    localStorage.setItem('pokemonsStorageClassic', JSON.stringify(sortedAndReversedPokemons))
-    onData(sortedAndReversedPokemons); 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pokemons])
+    localStorage.setItem('pokemonsStorageHard', JSON.stringify(sortedAndReversedPokemons));
+    onData(sortedAndReversedPokemons);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pokemons]);
 
   useEffect(() => {
     fetch(`/api/PkmnClassic/${id}`)
@@ -69,22 +69,22 @@ export default function GuessBarClassic({ id, onData }:Props) {
       .catch(error => {
         console.error('/api Error (api/PkmnClassic): ', error);
       });
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   useEffect(() => {
-    fetch(`/api/PkmnClassicDaily`)
+    fetch(`/api/PkmnShinyDaily`)
       .then(response => response.json())
       .then(data => {
         setPokemonToGuess(data[0]);
       })
       .catch(error => {
-        console.error('/api Error (api/PkmnClassicDaily): ', error);
+        console.error('/api Error (api/PkmnShinyDaily): ', error);
       });
   }, []);
 
   function lowerOrHigher(stat: number, statName: keyof PokemonData): string {
-    let returnValue: string = redCross;
+    let returnValue: string = redCross;    
     if (pokemonToGuess){
       if (stat < Number(pokemonToGuess[statName])) {
         returnValue = redArrowUp;
@@ -133,8 +133,6 @@ export default function GuessBarClassic({ id, onData }:Props) {
         <li>Atk Spe</li>
         <li>Def Spe</li>
         <li>Speed</li>
-        <li>Stade</li>
-        <li>Gen</li>
       </ul>
       <ul className='pokemons'>
       {pokemons.map((pokemon, index) => (
@@ -199,14 +197,6 @@ export default function GuessBarClassic({ id, onData }:Props) {
           <li>
             {pokemon.vit}
             <img src={ lowerOrHigher(pokemon.vit, 'vit')} alt="marker" />
-          </li>
-          <li>
-            {pokemon.stade}
-            <img src={ lowerOrHigher(pokemon.stade, 'stade')} alt="marker" />
-          </li>
-          <li>
-            {pokemon.generation}
-            <img src={ lowerOrHigher(pokemon.generation, 'generation')} alt="marker" />
           </li>
         </div>
         )).reverse()}
