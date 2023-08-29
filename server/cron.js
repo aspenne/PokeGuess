@@ -23,7 +23,6 @@ const logFilePath = path.join(__dirname, "logs/cron.log");
 
 function job(){
   schedule.scheduleJob("0 0 * * * *", () => {
-    console.log('test');
     const randomIdClassic = Math.floor(Math.random() * 1010) + 1;
     const randomIdShadow = Math.floor(Math.random() * 1010) + 1;
     const randomIdShiny = Math.floor(Math.random() * 1010) + 1;
