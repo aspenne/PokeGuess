@@ -3,11 +3,13 @@ import logo from '../assets/images/navbar/logo.svg';
 import angel from '../assets/images/navbar/angel.svg';
 import ghost from '../assets/images/navbar/ghost.svg';
 import pokedex from '../assets/images/navbar/pokedex.svg';
-import account from '../assets/images/navbar/account.svg';
+import hells from '../assets/images/navbar/hells-horns.svg';
+// import account from '../assets/images/navbar/account.svg';
 import angelHover from '../assets/images/navbar/angelHover.svg';
 import ghostHover from '../assets/images/navbar/ghostHover.svg';
 import pokedexHover from '../assets/images/navbar/pokedexHover.svg';
-import accountHover from '../assets/images/navbar/accountHover.svg';
+import hellsHover from '../assets/images/navbar/hells-hornsHover.svg';
+// import accountHover from '../assets/images/navbar/accountHover.svg';
 import { Link } from 'react-router-dom';
 
 type NavItemProps = {
@@ -26,9 +28,10 @@ type NavbarProps = {
 const Navbar: React.FC<NavbarProps> = ({ activeItem }) => {
   const [navItems, setNavItems] = useState<NavItemProps[]>([
     { id: 'classic', imageActive: angel, passiveImage: angel, hoverImage: angelHover, text: 'Classic guess', active: false},
-    { id: 'shadow', imageActive: ghost, passiveImage: ghost, hoverImage: ghostHover, text: 'Shadow Guess', active: false},
+    { id: 'hard', imageActive: hells, passiveImage: hells, hoverImage: hellsHover, text: 'Hard guess', active: false},
+    { id: 'shadow', imageActive: ghost, passiveImage: ghost, hoverImage: ghostHover, text: 'Shadow guess', active: false},
     { id: 'pokedex', imageActive: pokedex, passiveImage: pokedex, hoverImage: pokedexHover, text: 'Pokédex', active: false},
-    { id: 'account', imageActive: account, passiveImage: account, hoverImage: accountHover, text: 'Connecté', active: false},
+    // { id: 'account', imageActive: account, passiveImage: account, hoverImage: accountHover, text: 'Connecté', active: false},
   ]);
 
   useEffect(() => {

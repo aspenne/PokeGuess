@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 import PokemonCard from '../components/PokemonCard'
 import Autocomplete from '../components/AutocompletePokedex'
 
@@ -64,10 +65,11 @@ export default function Pokedex() {
                     pokedexID={parseInt(pokemon.pokedexId)}
                   />
                 </li>
-            ))}
+            ))} 
           </ul>
         </div>          
       </div>
+      <Footer></Footer>
     </div>
   )
 }

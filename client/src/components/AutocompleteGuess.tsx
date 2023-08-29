@@ -13,13 +13,13 @@ function zeroFill(number:number) {
 
 interface ClassicBarProps {
   onData: (data: number) => void;
-  pokemonList: PokemonData[] | undefined;
+  pokedexId: { id: number; }[] | undefined;
   pokemonFound: boolean;
 }
 
-export default function Autocomplete({onData, pokemonList, pokemonFound}: ClassicBarProps) {
+export default function Autocomplete({onData, pokedexId, pokemonFound}: ClassicBarProps) {
   const [value, setValue] = useState("");
-  const [pokemonsIdName, setPokemonsIdName] = useState<{ name_fr: string, name_en: string, pokedexId: number }[]>([]);
+  const [pokemonsIdName, setPokemonsIdName] = useState<PokemonData>([]);
   const [filteredSuggestions, setFilteredSuggestions] = useState<{id:number, name:string}[]>([]);
 
   const handleButtonClick = (pkmnId:number) => {
@@ -39,11 +39,11 @@ export default function Autocomplete({onData, pokemonList, pokemonFound}: Classi
   }, []);
 
   useEffect(() => {
-    if (pokemonList) {
-      const excludedPokedexIds = pokemonList.map(pokemon => pokemon.pokedexId);
+    if (pokedexId) {
+      const excludedPokedexIds = pokedexId.map(id => id);
       setPokemonsIdName(pokemons => pokemons.filter(pokemon => !excludedPokedexIds.includes(pokemon.pokedexId)));
     }
-  }, [pokemonList]);
+  }, [pokedexId]);
 
   useEffect(() => {
     setFilteredSuggestions(pokemonsIdName.map((pokemon) => ({

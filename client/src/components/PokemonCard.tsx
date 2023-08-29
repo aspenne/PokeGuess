@@ -1,5 +1,5 @@
-import spriteImages from './sprites';
 import { Link } from 'react-router-dom';
+import math from '../functions/math';
 
 interface PokemonCardProps {
   type: string;
@@ -9,8 +9,6 @@ interface PokemonCardProps {
 }
 
 function PokemonCard({ type, type2, name, pokedexID }: PokemonCardProps){
-  const imageIndex = pokedexID - 1;
-  const imageUrl = spriteImages[imageIndex];
   const primaryTypeClass = `type-${type}`;
 
   return (
@@ -22,7 +20,7 @@ function PokemonCard({ type, type2, name, pokedexID }: PokemonCardProps){
         </div>
         <h3>{name}</h3>
       </article>
-      <img className='pokemon' src={imageUrl} alt={`pokemon-${pokedexID}`}/>
+      <img className='pokemon' src={`/src/assets/images/sprites/${math.zeroFill(pokedexID)}.jpg`} alt={`pokemon-${pokedexID}`}/>
       <Link to={`/pokedex/${pokedexID}`}>
         <button className={primaryTypeClass}> En savoir plus</button>
       </Link>

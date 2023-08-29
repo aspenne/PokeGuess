@@ -56,6 +56,7 @@ const Congrats: React.FC<CongratsProps> = ({ pokemonId, attempt, active, isShiny
         item.id === page ? { ...item, imageActive: item.hoverImage, active: true } : item
       );
     setbutton(updatedButtonItems);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   const handleMouseOver = (itemId: string) => {

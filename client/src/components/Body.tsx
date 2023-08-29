@@ -1,6 +1,7 @@
 import reshiram from '../assets/images/home/reshiram.svg'
 import reshiramShadow from '../assets/images/home/reshiramShadow.svg'
 import reshiramGradient from '../assets/images/home/reshiramGradient.png'
+import { Link } from 'react-router-dom'
 
 
 function Body() {
@@ -13,8 +14,12 @@ function Body() {
                     <p> Chaque jour, un Pokémon sauvage se cache.C'est à toi, dresseur de Pokémon, de l'attraper (le deviner) !
                         Réussirez-vous à retrouver les 1009 Pokémons aux travers des 9 différentes générations ?</p>
                 <div className='btn-home'>
+                    <Link to={`/classic`}>
                     <button> Je trouve le Pokémon </button>
+                    </Link>
+                    <Link to={`/shadow`}>
                     <button> Je découvre l'ombre </button>
+                    </Link>
                 </div>
                 </article>
                 <article className='left-part'>

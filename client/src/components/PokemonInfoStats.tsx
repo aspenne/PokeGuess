@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 type NavItemProps = {
   id: number
@@ -189,14 +189,17 @@ export default function PokemonInfoStats() {
          <article className='evolution'>
           {evolution.map((item) => (
             (item.pre_pokedexId !== null || item.next_pokedexId !== null) && (
-              <div>
-                <p 
+              <div key={item.pre_pokedexId ?? item.next_pokedexId}>
+                <p
                   className='bold'
-                  style={{ color: typeColor[pokemon?.type_1_name as keyof typeof typeColor] ?? typeColor.Normal }}>
+                  style={{ color: typeColor[pokemon?.type_1_name as keyof typeof typeColor] ?? typeColor.Normal }}
+                >
                   {item.condition_evolution ?? 'Précédente'}
                 </p>
                 <div>
-                  <img src={`/src/assets/images/spritesPixel/${zeroFill(Number(item.pre_pokedexId ?? item.next_pokedexId))}.jpg`} alt=''/>
+                  <Link key={item.pre_pokedexId ?? item.next_pokedexId} to={`/pokedex/${item.pre_pokedexId ?? item.next_pokedexId}`}>
+                    <img src={`/src/assets/images/spritesPixel/${zeroFill(Number(item.pre_pokedexId ?? item.next_pokedexId))}.jpg`} alt='' />
+                  </Link>
                   <p></p>
                 </div>
               </div>

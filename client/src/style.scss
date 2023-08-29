@@ -105,6 +105,7 @@ $large: 24px;
   box-sizing: border-box;
   list-style: none;
   scroll-behavior: smooth;
+  text-align: center;
 }
 
 html{
@@ -121,7 +122,18 @@ h1 {
   letter-spacing: 5px;
 }
 
+h2{
+  color: $Neutral-100;
+  font-family: Concert One;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 103%; /* 65.92px */
+  letter-spacing: 3px;
+}
+
 h3 {
+  color: $Neutral-100;
   font-family: Concert One;
   font-size: 44px;
   font-style: normal;
@@ -138,13 +150,15 @@ a {
 #root{
 	height: 100vh;
   width: 100vw;
-  background-color: $Neutral-800;
 }
 
 .navbar {
   @include flex(space-between, center, row);
   background-color: $Neutral-900;
   padding: 15px 70px;
+  position: sticky;
+  top: 0px;
+  z-index: 4;
 
   img {
     height: 30px;
@@ -196,7 +210,7 @@ a {
   @include flex(center, space-between, column, 50px);
   padding: 0px 150px;
   align-self: stretch;
-	height: au;
+	height: 90vh;
   background-color: $Neutral-800;
 
   .container {
@@ -254,7 +268,7 @@ a {
         padding: 10px;
         color: $Neutral-100;
         border-radius: 8px;
-        background: var(--neutral-neutral-700, #393939);
+        background: $Neutral-700;
         box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
       }
     }
@@ -745,12 +759,39 @@ article.PokemonInfoStat{
   align-self: stretch;
   min-height: 100vh;
   background-color: $Neutral-800;
+  
+  div.text {
+    @include flex(start, center, column, 10px);
 
-  p{
-    @include desktop-body-l-r();
+    p {
+      @include desktop-body-l-r();
+      color: $Neutral-100;
+      text-align: center;
+    }
+
+  }
+
+  div.title {
+    @include flex(center, center, column, 30px);
+
+    p{
+      @include desktop-body-l-r();
+      color: $Neutral-100;
+      width: 70%;
+      margin: auto;
+    }
+  }
+
+  button{
+    cursor: pointer;
+    display: flex;
+    padding: 27px 37px;
+    align-items: center;
+    gap: 10px;
+    border-radius: $large;
+    background: $Neutral-700;
+    @include desktop-body-l-b();
     color: $Neutral-100;
-    width: 70%;
-    text-align: center;
   }
 }
 
@@ -887,3 +928,65 @@ section.guess-bar-shadow{
 }
 
 // 
+
+.congrats{
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  background: $pokemon-gradient-dark;
+  border-radius: $large;
+  color: $Neutral-100;
+  animation: congrats-appear 2s ease forwards; 
+
+  @keyframes congrats-appear {
+    from{
+      opacity: 0;
+    }
+    to{
+      opacity: 1 ;
+    }
+  }
+
+  p, span{
+    @include desktop-body-l-r();
+    color: $Neutral-100;
+    width: auto;
+  }
+
+  div{
+    @include flex(center, center, row, 10px);
+    width: 100%;
+  }
+  
+  img{
+    width: 80%;
+  }
+
+  div.btns{
+    @include flex(center, center, row, 20px);
+  }
+
+  div.btn{
+      @include flex(center, center, row, 20px);
+      @include desktop-body-l-b();
+      padding: 20px;
+      color: $Neutral-100;
+      border-radius: 8px;
+      background: $Neutral-700;
+      box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+      white-space: nowrap;
+
+      img {
+        height: 30px;
+        object-fit: contain;
+      }
+  }
+}
