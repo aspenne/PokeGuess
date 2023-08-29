@@ -157,9 +157,26 @@ const getNameById = `
 
 const getClassicPkmn = `
   SELECT 
-    *
+    *,
+    T1.type_name AS type_1_name,
+    T2.type_name AS type_2_name,
+    Ta1.talent_name AS talent_1_name,
+    Ta2.talent_name AS talent_2_name,
+    Ta3.talent_name AS talent_3_name
   FROM 
-    PokeGuess.ClassicDaily 
+    PokeGuess.ClassicDaily AS Cd
+  Inner JOIN
+    PokeGuess.Pokemon AS P ON p.pokedexId = Cd.id
+  LEFT JOIN
+    PokeGuess.Types AS T1 ON P.type_1 = T1.type_id
+  LEFT JOIN
+    PokeGuess.Types AS T2 ON P.type_2 = T2.type_id
+  LEFT JOIN
+    PokeGuess.Talents AS Ta1 ON P.talent_1 = Ta1.talent_id
+  LEFT JOIN
+    PokeGuess.Talents AS Ta2 ON P.talent_2 = Ta2.talent_id
+  LEFT JOIN
+    PokeGuess.Talents AS Ta3 ON P.talent_3 = Ta3.talent_id
   ORDER BY 
     daily DESC
   LIMIT 1;
@@ -169,7 +186,7 @@ const getShadowPkmn = `
   SELECT 
     *
   FROM 
-    PokeGuess.ShadowDaily 
+    PokeGuess.ShadowDaily
   ORDER BY 
     daily DESC
   LIMIT 1;
@@ -177,9 +194,26 @@ const getShadowPkmn = `
 
 const getShinyPkmn = `
   SELECT 
-    *
+    *,
+    T1.type_name AS type_1_name,
+    T2.type_name AS type_2_name,
+    Ta1.talent_name AS talent_1_name,
+    Ta2.talent_name AS talent_2_name,
+    Ta3.talent_name AS talent_3_name
   FROM 
-    PokeGuess.ShinyDaily 
+    PokeGuess.ShinyDaily AS Sd
+  Inner JOIN
+    PokeGuess.Pokemon AS P ON P.pokedexId = Sd.id
+  LEFT JOIN
+    PokeGuess.Types AS T1 ON P.type_1 = T1.type_id
+  LEFT JOIN
+    PokeGuess.Types AS T2 ON P.type_2 = T2.type_id
+  LEFT JOIN
+    PokeGuess.Talents AS Ta1 ON P.talent_1 = Ta1.talent_id
+  LEFT JOIN
+    PokeGuess.Talents AS Ta2 ON P.talent_2 = Ta2.talent_id
+  LEFT JOIN
+    PokeGuess.Talents AS Ta3 ON P.talent_3 = Ta3.talent_id
   ORDER BY 
     daily DESC
   LIMIT 1;
