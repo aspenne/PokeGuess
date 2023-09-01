@@ -1,5 +1,5 @@
 -- Insert Into Types Table
-INSERT INTO PokeGuess.Types (type_id, type_name) VALUES
+INSERT INTO Types (type_id, type_name) VALUES
 	(1, "Plante"),
 	(2, "Poison"),
 	(3, "Feu"),
@@ -21,7 +21,7 @@ INSERT INTO PokeGuess.Types (type_id, type_name) VALUES
 
 
 -- Insert Into Talents Table
-INSERT INTO PokeGuess.Talents (talent_id, talent_name) VALUES
+INSERT INTO Talents (talent_id, talent_name) VALUES
 	(1, "Engrais"),
 	(2, "Chlorophylle"),
 	(3, "Brasier"),
@@ -306,7 +306,7 @@ INSERT INTO PokeGuess.Talents (talent_id, talent_name) VALUES
 	(282, "Moteur à Hadrons");
 
 -- Insert Into Pokemons Table
-INSERT INTO PokeGuess.Pokemon (pokedexId, generation, category, name_fr, name_en, type_1, type_2, talent_1, talent_2, talent_3, hp, atk, def, spe_atk, spe_def, vit, height, weight, stade) VALUES
+INSERT INTO Pokemon (pokedexId, generation, category, name_fr, name_en, type_1, type_2, talent_1, talent_2, talent_3, hp, atk, def, spe_atk, spe_def, vit, height, weight, stade) VALUES
 	(1, 1, "Pokemon Graine", "Bulbizarre", "Bulbasaur", 1, 2, 1, 2, null, 45, 49, 49, 65, 65, 45, 0.7 , 6.9, 1),
 	(2, 1, "Pokemon Graine", "Herbizarre", "Ivysaur", 1, 2, 1, 2, null, 60, 62, 63, 80, 80, 60, 1.0 , 13.0, 2),
 	(3, 1, "Pokemon Graine", "Florizarre", "Venusaur", 1, 2, 1, 2, null, 80, 82, 83, 100, 100, 80, 2.0 , 100.0, 3),
@@ -1320,7 +1320,7 @@ INSERT INTO PokeGuess.Pokemon (pokedexId, generation, category, name_fr, name_en
     
     
 -- Insert Into Evolutions Table 
-INSERT INTO PokeGuess.Evolutions (pokedexId, pre_pokedexId, next_pokedexId, Mega_evolution, condition_evolution) VALUES
+INSERT INTO Evolutions (pokedexId, pre_pokedexId, next_pokedexId, Mega_evolution, condition_evolution) VALUES
 	(1, null, 2, false, "Niveau 16"),
 	(1, null, 3, false, "Niveau 32"),
 	(2, 1, null, false, null),
