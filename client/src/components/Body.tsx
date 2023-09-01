@@ -22,7 +22,8 @@ function Body() {
                     </Link>
                 </div>
                 </article>
-                <article className='left-part'>
+                <article 
+                className='left-part'>
                     <img id='reshiram' src={reshiram} alt="reshiram" />
                     <img id='reshiramShadow 'src={reshiramShadow} alt="reshiram shadow" />
                     <img id='reshiramGradient'src={reshiramGradient} alt="linear gradient" />

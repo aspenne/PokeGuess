@@ -82,7 +82,7 @@ const Congrats: React.FC<CongratsProps> = ({ pokemonId, attempt, active, isShiny
         <img src={`/src/assets/images/spritesShiny/${math.zeroFill(pokemonId)}_shiny.jpg`} alt={pokemonId + 'image'} />:
         <img src={`/src/assets/images/sprites/${math.zeroFill(pokemonId)}.jpg`} alt={pokemonId + 'image'} />
         }
-       <div>
+       <div className={'pokemon-date'}>
           <p>Prochain Pokémon dans : </p>
           <Countdown 
             date={Date.now() + secondsUntilMidnight * 1000} 

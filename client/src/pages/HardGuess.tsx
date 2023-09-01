@@ -92,9 +92,7 @@ export default function ClassicBar() {
         </div>
         <AutoCompleteGuess
           onData={handleChildDataId}
-          pokedexId={pokemons?.map(pokemon => ({
-            id: pokemon.pokedexId
-          }))}
+          pokedexId={pokemons?.map(pokemon => pokemon.pokedexId) || []} 
           pokemonFound={pokemonFounded}
         />
         <GuessBar

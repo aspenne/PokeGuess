@@ -10,6 +10,14 @@ import ghostHover from '../assets/images/navbar/ghostHover.svg';
 import pokedexHover from '../assets/images/navbar/pokedexHover.svg';
 import hellsHover from '../assets/images/navbar/hells-hornsHover.svg';
 // import accountHover from '../assets/images/navbar/accountHover.svg';
+import burger from '../assets/images/navbar/burgerMenu.svg';
+import cross from '../assets/images/navbar/cross.svg';
+import angelMobile from '../assets/images/navbar/angelMobile.svg';
+import ghostMobile from '../assets/images/navbar/ghostMobile.svg';
+import pokedexMobile from '../assets/images/navbar/pokedexMobile.svg';
+import hellsMobile from '../assets/images/navbar/hellsMobile.svg';
+// import accountMobile from '../assets/images/navbar/accountMobile.svg';
+
 import { Link } from 'react-router-dom';
 
 type NavItemProps = {
@@ -21,8 +29,15 @@ type NavItemProps = {
   active: boolean;
 };
 
+type NavItemPropsMobile = {
+  id: string;
+  imageActive: string;
+  text: string;
+};
+
 type NavbarProps = {
   activeItem: string;
+
 };
 
 const Navbar: React.FC<NavbarProps> = ({ activeItem }) => {
@@ -33,12 +48,22 @@ const Navbar: React.FC<NavbarProps> = ({ activeItem }) => {
     { id: 'pokedex', imageActive: pokedex, passiveImage: pokedex, hoverImage: pokedexHover, text: 'Pokédex', active: false},
     // { id: 'account', imageActive: account, passiveImage: account, hoverImage: accountHover, text: 'Connecté', active: false},
   ]);
+  const [burgerActive, setBurgerActive] = useState<boolean>(false)
+  const [NavItemsMobile] = useState<NavItemPropsMobile[]>([
+    { id: 'classic', imageActive: angelMobile, text: 'Classic guess'},
+    { id: 'hard', imageActive: hellsMobile, text: 'Hard guess'},
+    { id: 'shadow', imageActive: ghostMobile, text: 'Shadow guess'},
+    { id: 'pokedex', imageActive: pokedexMobile, text: 'Pokédex'},
+  ]);
+
+  let iconMobile:string = burger;
 
   useEffect(() => {
     const updatedNavItems = navItems.map((item) =>
       item.id === activeItem ? { ...item, imageActive: item.hoverImage, active: true } : item
     );
     setNavItems(updatedNavItems);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeItem]);
 
   const handleMouseOver = (itemId: string) => {
@@ -59,7 +84,6 @@ const Navbar: React.FC<NavbarProps> = ({ activeItem }) => {
     }
   };
 
-
   return (
     <div className="navbar">
       <Link to={'/'}>
@@ -67,6 +91,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeItem }) => {
           <img src={logo} alt="logo" />
         </div>
       </Link>
+      { window.innerWidth > 950 && 
       <div className="left-part">
         {navItems.map((item) => (
           <Link key={item.id} to={`/${item.id}`}>
@@ -82,6 +107,33 @@ const Navbar: React.FC<NavbarProps> = ({ activeItem }) => {
           </Link>
         ))}
       </div>
+      }
+      { window.innerWidth < 950 && 
+      <div className="left-part">
+        <img  src={iconMobile} alt={'burger menu icon'} 
+          onClick={() => {
+            setBurgerActive(burgerActive == true ? false : true)
+            iconMobile == burger ? iconMobile = cross : iconMobile = burger
+          }}
+        />
+      </div>
+      }
+      { burgerActive == true &&
+        <div className="mobile-burger">
+        {NavItemsMobile.map((item) => (
+            <Link key={item.id} to={`/${item.id}`}>
+              <div
+                id={item.id}
+              >
+                <div>
+                  <img src={item.imageActive} alt={item.text} />
+                  <p>{item.text}</p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      }
     </div>
   );
 }

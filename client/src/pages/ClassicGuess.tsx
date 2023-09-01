@@ -35,6 +35,7 @@ export default function ClassicBar() {
   const [showCongrats, setShowCongrats] = useState(false);
   const [pokemonFounded, setPokemonFounded] = useState<boolean>(false)
 
+  
 
   const handleChildDataId = (data: number) => {
     setPokemonId(data);
@@ -56,7 +57,7 @@ export default function ClassicBar() {
   }, []);
 
   useEffect(() => {
-    if (pokemonToGues && pokemons && pokemons.length > 0) {
+    if (pokemonToGues && pokemons && pokemons.length > 1) {
       if (pokemons.reverse()[0].pokedexId === pokemonToGues.pokedexId || pokemons[0].pokedexId === pokemonToGues.pokedexId) {
         ParticlesConfetti; 
         setPokemonFounded(true);
@@ -93,9 +94,7 @@ export default function ClassicBar() {
         </div>
         <AutoCompleteGuess
           onData={handleChildDataId}
-          pokedexId={pokemons?.map(pokemon => ({
-            id: pokemon.pokedexId
-          }))}
+          pokedexId={pokemons?.map(pokemon => pokemon.pokedexId) || []} 
           pokemonFound={pokemonFounded}
         />
         <GuessBar

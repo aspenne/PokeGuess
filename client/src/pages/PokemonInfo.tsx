@@ -2,6 +2,11 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import Navbar from '../components/Navbar';
 import PokemonInfoStats from '../components/PokemonInfoStats'
+import Footer from '../components/Footer';
+
+interface PokemonName {
+  name_fr: string;
+}
 
 function zeroFill(number:number) {
   return String(number).padStart(4, '0');
@@ -9,7 +14,7 @@ function zeroFill(number:number) {
 
 export default function PokemonInfo() {
 
-  const [pokemonName, setPokemonName] = useState('');
+  const [pokemonName, setPokemonName] = useState<PokemonName>();
 
   const params = useParams()
 
@@ -30,7 +35,7 @@ export default function PokemonInfo() {
       <div className='pokedexInfoBody'>
         <section>
           <div className="title">
-            <h1> {pokemonName.name_fr} n°{ zeroFill(Number(params.id)) }</h1>
+            <h1> {pokemonName?.name_fr} n°{ zeroFill(Number(params.id)) }</h1>
           </div>
           <section className='pokemonInfoCard'>
             <div className='btn'>
@@ -42,14 +47,13 @@ export default function PokemonInfo() {
               </Link>
             </div>
             <section className='pokemonImageStats'>
-              <div>
-                <img src={`/src/assets/images/sprites/${zeroFill(Number(params.id))}.jpg`}/>
-              </div>     
+              <img src={`/src/assets/images/sprites/${zeroFill(Number(params.id))}.jpg`}/>
               <PokemonInfoStats/>        
             </section>
           </section>
         </section>
       </div>
+      <Footer/>
     </div>
 
   )

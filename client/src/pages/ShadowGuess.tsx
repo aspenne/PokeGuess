@@ -86,16 +86,15 @@ export default function ShadowGuess() {
               </p>
             </div>
           
-          <img 
+          <img
+            className={'imageToGuess'}
             style={{filter: `brightness(${brightness}%)`}}
             src={`/src/assets/images/sprites/${pokemonToGues?.id ? math.zeroFill(parseInt(pokemonToGues.id)) + '.jpg' : ''}`} 
             alt={pokemonToGues?.id?.toString()} 
           />
           <AutoCompleteGuess
             onData={handleChildDataId}
-            pokedexId={pokemons?.map(pokemon => ({
-              id: pokemon.pokedexId
-            }))}
+            pokedexId={pokemons?.map(pokemon => pokemon.pokedexId) || []}
             pokemonFound={pokemonFounded}
           />
           <MemoizedGuessBarShadow id={pokemonId} onData={handleChildDataPokemons} />

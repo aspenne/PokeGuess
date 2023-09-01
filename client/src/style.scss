@@ -91,6 +91,112 @@ $large: 24px;
   text-align: center;
 }
 
+@mixin desktop-h2() {
+  /* Desktop/H2 */
+  font-family: Concert One;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 103%; /* 65.92px */
+  letter-spacing: 3px;
+}
+
+@mixin desktop-h3() {
+  /* Desktop/H3 */
+  font-family: Concert One;
+  font-size: 44px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 44px */
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+@mixin desktop-h3() {
+  /* Desktop/H3 */
+  font-family: Concert One;
+  font-size: 44px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 44px */
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+@mixin desktop-h4() {
+  /* Desktop/H4 */
+  font-family: Concert One;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 32px */
+  letter-spacing: 1px;
+  text-align: center;
+
+}
+
+@mixin desktop-h5() {
+  /* Desktop/H5 */
+  font-family: Concert One;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 28px */
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+@mixin desktop-h6() {
+  /* Desktop/H6 */
+  font-family: Concert One;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 105%; /* 25.2px */
+  text-align: center;
+}
+
+
+@mixin mobile-h1() {
+  /* Mobile/H1 */
+  font-family: Concert One;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 105%; /* 33.6px */
+  text-align: center;
+}
+
+@mixin mobile-body-l-r() {
+  /* Mobile/Body - Large - Regular */
+  font-family: Cabin;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 18px */
+  text-align: center;
+}
+
+@mixin mobile-body-l-b() {
+  /* Mobile/Body - Large - Bold */
+  font-family: Cabin;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 18px */
+  text-align: center;
+}
+
+@mixin mobile-body-m-b(){
+  /* Mobile/Body - Medium - Bold */
+  font-family: Cabin;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 15px */
+  text-align: center;
+}
+
 @mixin flex($vertical: center, $horizontal: center, $direction: row, $gap: 0) {
   display: flex;
   justify-content: $vertical;
@@ -113,38 +219,43 @@ html{
 }
 
 h1 {
+  @include desktop-h1();
   color: $Neutral-100;
-  font-family: Concert One;
-  font-size: 72px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 105%;
-  letter-spacing: 5px;
 }
 
 h2{
+  @include desktop-h2();
   color: $Neutral-100;
-  font-family: Concert One;
-  font-size: 64px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 103%; /* 65.92px */
-  letter-spacing: 3px;
 }
 
 h3 {
+  @include desktop-h3();
   color: $Neutral-100;
-  font-family: Concert One;
-  font-size: 44px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%;
-  letter-spacing: 1px;
+}
+
+h4 {
+  @include desktop-h4();
+  color: $Neutral-100;
+}
+
+h5 {
+  @include desktop-h5();
+  color: $Neutral-100;
+}
+
+h6 {
+  @include desktop-h6();
+  color: $Neutral-100;
 }
 
 a {
   text-decoration: none;
   color: $Neutral-100
+}
+
+p {
+  @include desktop-body-l-r();
+  color: $Neutral-100;
 }
 
 #root{
@@ -159,6 +270,7 @@ a {
   position: sticky;
   top: 0px;
   z-index: 4;
+  height: 70px;
 
   img {
     height: 30px;
@@ -204,16 +316,32 @@ a {
       cursor: pointer;
     }
   }
+
+  .mobile-burger{
+    position: absolute;
+    top: 70px;
+    left: 0px;
+    width: 100%;
+    padding: 15px; 
+    @include flex(start, start, column, 30px);
+    @include mobile-body-l-b();
+    border-top: solid $Neutral-100 1px;
+    background-color: $Neutral-900;
+
+    div{
+      @include flex(center, center, row, 10px);
+    }
+  }
 }
 
 .body-home {
-  @include flex(center, space-between, column, 50px);
   padding: 0px 150px;
   align-self: stretch;
-	height: 90vh;
   background-color: $Neutral-800;
+  height: calc(100vh - 140px);
 
   .container {
+    height: 100%;
     display: flex;
     padding: 35px 0px;
     justify-content: space-between;
@@ -221,15 +349,10 @@ a {
 
     .right-part {
       @include flex(center, flex-start, column, 35px);
-      width: 568px;
-
-      h1 {
-        @include desktop-h1();
-        color: $Neutral-100;
-      }
+      max-width: 568px;
+      width: 80%;
 
       p {
-        @include desktop-body-l-r();
         color: $Neutral-200;
       }
     }
@@ -260,6 +383,8 @@ a {
     .btn-home {
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      width: 100%;
       gap: 35px;
 
       button {
@@ -342,9 +467,6 @@ a {
     
     ul.pokemon-list {
       @include flex(center, flex-start, row, 20px);
-      align-items: flex-start;
-      align-content: flex-start;
-      align-self: stretch;
       flex-wrap: wrap;
     }
   }
@@ -362,7 +484,7 @@ a {
   
   
   article.nameType{
-    @include flex(center, flex-end, row, 15px);
+    @include flex(center, center, row, 15px);
 
     div.types{
       display: flex;
@@ -590,7 +712,6 @@ input {
 
 div.search-btn{
   @include flex(center, center, row, 10px);
-  width: 300;
   padding: 27px 35px;
   border-radius: $large;
   background: $pokemon-gradient-dark;
@@ -603,20 +724,19 @@ div.search-btn{
 
   section{
     @include flex(center, center, column, 35px);
-    align-self: stretch;
+    padding: 25px;
     
     div.title{
       @include flex(center, center, column, 75px);
       padding: 35px 0px;
-      align-self: stretch;
     }
 
     section.pokemonInfoCard{
-      @include flex(center, flex-start, column, 40px);
+      @include flex(start, center, column, 0px);
       padding: 60px 0px;
-      align-self: stretch;
       border-radius: $medium;
       background: $pokemon-gradient-dark;
+      width: fit-content;
 
       div.btn{
 
@@ -645,7 +765,6 @@ div.search-btn{
         flex-direction: row;
         justify-content: space-around;
         align-items: center;
-        align-self: stretch;
       }
     }
   }
@@ -655,7 +774,7 @@ article.PokemonInfoStat{
   @include flex(flex-start, center, column, 20px);
   display: flex;
   width: 400px;
-  height: 525px;
+  height: fit-content;
   padding: 0px 15px;
   border-radius: $medium;
   background: rgba(255, 255, 255, 0.30);
@@ -796,7 +915,7 @@ article.PokemonInfoStat{
 }
 
 section.guess-bar{
-  @include flex(start, center, column, 10px);
+  @include flex(start, start, column, 10px);
   padding: 27px 35px;
   align-self: stretch;
   background: $pokemon-gradient-dark;
@@ -869,6 +988,7 @@ section.guess-bar-shadow{
   border-radius: $large;
   @include desktop-body-l-r();
   color: $Neutral-100;
+  width: 240px;
 
   ul{
     display: flex;
@@ -988,5 +1108,191 @@ section.guess-bar-shadow{
         height: 30px;
         object-fit: contain;
       }
+  }
+}
+
+@media (max-width: 1275px) {
+  .body-home{
+
+    .container {
+      flex-direction: column;
+      gap: 30px;
+      justify-content: center;
+    }
+    .left-part {
+      display: none;
+    }
+  }
+  section.guess-bar{
+    overflow: auto;
+    ul{
+      width: 960px;
+      border-radius: $medium;
+    }
+  }
+  div.search-btn{
+    border-radius: $medium;
+  }
+  .pokedexInfoBody {
+    section {
+      section.pokemonInfoCard {
+        section.pokemonImageStats{
+          flex-direction: column;
+          gap: 100px;
+
+          article.PokemonInfoStat{
+            padding: 25px;
+
+            div.content{
+              padding: 0px;
+            }
+
+            ul{
+              padding: 0px;
+              height: auto;
+            }
+          }
+        }
+      }
+    } 
+  }
+  
+  
+  
+}
+
+@media (max-width: 950px) {
+  .body-home{
+    padding: 0px;
+
+    .container {
+      flex-direction: column;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .classic-body{
+    padding: 35px 50px;
+  }
+  .pokedexInfoBody{
+    padding: 0px 0px;
+  }
+}
+
+@media (max-width: 600px) {
+  .body-home{
+    h1{
+      @include mobile-h1();
+    } 
+    
+  }
+  .navbar{
+    padding: 15px 20px;
+  }
+  .imageToGuess{
+    width: 80%;
+  }
+  .congrats{
+    top: 65%;
+    width: 60%;
+    div.btns{
+      flex-direction: column;
+    }
+    .pokemon-date{
+      @include flex(center, center, column, 0px);
+    }
+  }
+  .congrats p, .congrats span{
+    @include mobile-body-l-r();
+  }
+  h3{
+    @include desktop-h5();
+  }
+  .pokedexInfoBody {
+    section {
+      section.pokemonInfoCard {
+        section.pokemonImageStats{
+          gap: 30px;
+          img{
+            width: 60%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .body-home{
+    h1{
+      @include mobile-h1();
+    } 
+  }
+
+  h1{
+    @include mobile-h1();
+  }
+
+  p{
+    @include mobile-body-l-r();
+  }
+
+  .classic-body div.title p{
+    @include mobile-body-l-r();
+  }
+  
+  section.guess-bar{
+    @include mobile-body-l-b();
+  }
+
+  section.guess-bar-shadow{
+    @include mobile-body-l-b();
+  }
+
+  .footer p{
+    @include mobile-body-m-b();
+  }
+
+  .pokedexInfoBody section section.pokemonInfoCard div.btn button{
+    width: 100%;
+    height: 38px;
+    @include mobile-body-l-b();
+  }
+
+  article.PokemonInfoStat{
+    width: 100%;
+  }
+
+  .body-home .container .btn-home{
+    @include flex(center, center, column, 10px);
+
+    button{
+      width: 100%;
+      height: 38px;
+      @include mobile-body-l-b();
+    }
+  }
+
+  .classic-body button{
+    @include flex(center, center, row, 10px);
+    width: 100%;
+    height: 38px;
+    @include mobile-body-l-b();
+    border-radius: $small;
+  }
+  article.PokemonInfoStat {
+    div.content{
+      article.stat{
+        div.nameValue p{
+          @include mobile-body-l-b();
+        }
+      } 
+    }
+  }
+
+  .pokemonCard{
+    padding: 0px;
+    width: 100%;
   }
 }

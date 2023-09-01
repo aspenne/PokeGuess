@@ -6,7 +6,9 @@ function App() {
 
   return (
     <div style={{height: "100%"}}>
-      <Navbar activeItem="none" />
+      <Navbar 
+        activeItem="none" 
+      />
       <Body/>
       <div className='footerHome'>
         <Footer/>

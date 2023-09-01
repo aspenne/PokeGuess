@@ -4,11 +4,13 @@ export function scheduleCacheCleanup() {
 
   const lastExecutionDate = localStorage.getItem('lastCacheCleanup');
 
-  if (!lastExecutionDate || new Date(lastExecutionDate).getDate() !== currentDate.getDate()) {
+  if (!lastExecutionDate || 
+      new Date(lastExecutionDate).getDate() !== currentDate.getDate() || 
+      new Date(lastExecutionDate).getMonth() !== currentDate.getMonth()) {
+
     localStorage.removeItem('pokemonsStorageShadow');
     localStorage.removeItem('pokemonsStorageClassic');
     localStorage.removeItem('pokemonsStorageHard');
-    localStorage.removeItem('pokemonFound');
 
     localStorage.setItem('lastCacheCleanup', currentDate.toISOString());
   }
