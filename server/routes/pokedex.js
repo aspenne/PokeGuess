@@ -17,8 +17,6 @@ const connection = mysql.createConnection({
   database: DB_DATABASE,
 });
 
-connection.connect();
-
 const getPokemonsInfoQuery = `
     SELECT 
         P.pokedexId,
@@ -166,7 +164,7 @@ const getClassicPkmn = `
   FROM 
     u697843051_PokeGuess.ClassicDaily AS Cd
   Inner JOIN
-    u697843051_PokeGuess.Pokemon AS P ON p.pokedexId = Cd.id
+    u697843051_PokeGuess.Pokemon AS P ON P.pokedexId = Cd.id
   LEFT JOIN
     u697843051_PokeGuess.Types AS T1 ON P.type_1 = T1.type_id
   LEFT JOIN
