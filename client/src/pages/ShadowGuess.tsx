@@ -39,7 +39,7 @@ export default function ShadowGuess() {
   };
 
   useEffect(() => {
-    fetch(`/api/PkmnShadowDaily`)
+    fetch(`https://pokeguess.up.railway.app/api/PkmnShadowDaily`)
       .then(response => response.json())
       .then(data => {
         setPokemonToGuess(data[0]);
@@ -89,7 +89,7 @@ export default function ShadowGuess() {
           <img
             className={'imageToGuess'}
             style={{filter: `brightness(${brightness}%)`}}
-            src={`/src/assets/images/sprites/${pokemonToGues?.id ? math.zeroFill(parseInt(pokemonToGues.id)) + '.jpg' : ''}`} 
+            src={`https://pokeguess.fun/assets/images/sprites/${pokemonToGues?.id ? math.zeroFill(parseInt(pokemonToGues.id)) + '.jpg' : ''}`} 
             alt={pokemonToGues?.id?.toString()} 
           />
           <AutoCompleteGuess
