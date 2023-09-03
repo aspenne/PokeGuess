@@ -82,7 +82,7 @@ export default function PokemonInfoStats() {
 
   useEffect(() => {
     if (params.id !== undefined) {
-      fetch(`/api/Pkmn/${params.id}`)
+      fetch(`https://pokeguess.up.railway.app/api/Pkmn/${params.id}`)
         .then(response => response.json())
         .then(data => {
           setPokemon(data[0]);
@@ -95,7 +95,7 @@ export default function PokemonInfoStats() {
 
   useEffect(() => {
     if (pokemon !== undefined) {
-      fetch(`/api/Evolution/${pokemon.pokedexId}`)
+      fetch(`https://pokeguess.up.railway.app/api/Evolution/${pokemon.pokedexId}`)
         .then(response => response.json())
         .then(data => {
           setEvolution(data);
@@ -198,7 +198,7 @@ export default function PokemonInfoStats() {
                 </p>
                 <div>
                   <Link key={item.pre_pokedexId ?? item.next_pokedexId} to={`/pokedex/${item.pre_pokedexId ?? item.next_pokedexId}`}>
-                    <img src={`/src/assets/images/spritesPixel/${zeroFill(Number(item.pre_pokedexId ?? item.next_pokedexId))}.jpg`} alt='' />
+                    <img src={`https://pokeguess.fun/assets/images/spritesPixel/${zeroFill(Number(item.pre_pokedexId ?? item.next_pokedexId))}.jpg`} alt='' />
                   </Link>
                   <p></p>
                 </div>

@@ -31,7 +31,7 @@ export default function GuessBarShadow({ id, onData }: Props) {
   }, [pokemons]);
 
   useEffect(() => {
-    fetch(`/api/PkmnShadow/${id}`)
+    fetch(`https://pokeguess.up.railway.app/api/PkmnShadow/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setPokemons((prevPokemons) => {
@@ -60,7 +60,7 @@ export default function GuessBarShadow({ id, onData }: Props) {
             <div key={index} className={"pokemonBox"}>
               <li>
                 <img
-                  src={`/src/assets/images/spritesPixel/${math.zeroFill(
+                  src={`https://pokeguess.fun/assets/images/spritesPixel/${math.zeroFill(
                     Number(pokemon.pokedexId)
                   )}.jpg`}
                   alt=""

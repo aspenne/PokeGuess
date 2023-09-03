@@ -44,7 +44,7 @@ export default function ClassicBar() {
   }, []);
 
   useEffect(() => {
-    fetch(`/api/PkmnShinyDaily`)
+    fetch(`https://pokeguess.up.railway.app/api/PkmnShinyDaily`)
       .then(response => response.json())
       .then(data => {
         setPokemonToGuess(data[0]);

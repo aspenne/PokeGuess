@@ -28,7 +28,7 @@ export default function Autocomplete({onData, pokedexId, pokemonFound}: ClassicB
   };
 
   useEffect(() => {
-    fetch('/api/PkmnsIdName')
+    fetch('https://pokeguess.up.railway.app/api/PkmnsIdName')
       .then(response => response.json())
       .then(data => {
         setPokemonsIdName(data);
@@ -84,7 +84,7 @@ export default function Autocomplete({onData, pokedexId, pokemonFound}: ClassicB
                 handleButtonClick(suggestion.id);
                 setPokemonsIdName(pokemons => pokemons.filter(pokemon => pokemon.pokedexId !== suggestion.id));
               }}>
-                <img src={`/src/assets/images/spritesPixel/${zeroFill(suggestion.id)}.jpg`} alt={suggestion.id.toString()} />
+                <img src={`https://pokeguess.fun/assets/images/spritesPixel/${zeroFill(suggestion.id)}.jpg`} alt={suggestion.id.toString()} />
                 <p>{suggestion.name}</p>
               </li>
               <div className="line"></div>

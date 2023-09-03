@@ -15,12 +15,12 @@ function PokemonCard({ type, type2, name, pokedexID }: PokemonCardProps){
     <section className='pokemonCard'>
       <article className='nameType'>
         <div className="types">
-          <img src={`/src/assets/images/types/${type}.svg`} alt={type} />
-          {type2 && <img src={`/src/assets/images/types/${type2}.svg`} alt={type2} />}
+          <img src={`https://pokeguess.fun/assets/images/types/${type}.svg`} alt={type} />
+          {type2 && <img src={`https://pokeguess.fun/assets/images/types/${type2}.svg`} alt={type2} />}
         </div>
         <h3>{name}</h3>
       </article>
-      <img className='pokemon' src={`/src/assets/images/sprites/${math.zeroFill(pokedexID)}.jpg`} alt={`pokemon-${pokedexID}`}/>
+      <img className='pokemon' src={`https://pokeguess.fun/assets/images/sprites/${math.zeroFill(pokedexID)}.jpg`} alt={`pokemon-${pokedexID}`}/>
       <Link to={`/pokedex/${pokedexID}`}>
         <button className={primaryTypeClass}> En savoir plus</button>
       </Link>

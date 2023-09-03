@@ -19,7 +19,7 @@ export default function PokemonInfo() {
   const params = useParams()
 
   useEffect(() => {
-    fetch(`/api/PkmnName/${params.id}`)
+    fetch(`https://pokeguess.up.railway.app/api/PkmnName/${params.id}`)
     .then(response => response.json())
   .then(data => {
       setPokemonName(data[0]);
@@ -47,7 +47,7 @@ export default function PokemonInfo() {
               </Link>
             </div>
             <section className='pokemonImageStats'>
-              <img src={`/src/assets/images/sprites/${zeroFill(Number(params.id))}.jpg`}/>
+              <img src={`https://pokeguess.fun/assets/images/sprites/${zeroFill(Number(params.id))}.jpg`}/>
               <PokemonInfoStats/>        
             </section>
           </section>

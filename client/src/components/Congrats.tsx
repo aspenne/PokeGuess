@@ -79,8 +79,8 @@ const Congrats: React.FC<CongratsProps> = ({ pokemonId, attempt, active, isShiny
         <h3>Félicitations</h3>
         <p>Tu as trouvé le pokémon en {attempt} essais !</p>
         {isShiny === true ?
-        <img src={`/src/assets/images/spritesShiny/${math.zeroFill(pokemonId)}_shiny.jpg`} alt={pokemonId + 'image'} />:
-        <img src={`/src/assets/images/sprites/${math.zeroFill(pokemonId)}.jpg`} alt={pokemonId + 'image'} />
+        <img src={`https://pokeguess.fun/assets/images/spritesShiny/${math.zeroFill(pokemonId)}_shiny.jpg`} alt={pokemonId + 'image'} />:
+        <img src={`https://pokeguess.fun/assets/images/sprites/${math.zeroFill(pokemonId)}.jpg`} alt={pokemonId + 'image'} />
         }
        <div className={'pokemon-date'}>
           <p>Prochain Pokémon dans : </p>

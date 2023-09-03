@@ -11,7 +11,7 @@ export default function Autocomplete() {
   const [pokemonsIdName, setPokemonsIdName] = useState<{ name_fr: string, name_en: string, pokedexId: number }[]>([]);
 
   useEffect(() => {
-    fetch('/api/PkmnsIdName')
+    fetch('https://pokeguess.up.railway.app/api/PkmnsIdName')
     .then(response => response.json())
   .then(data => {
       setPokemonsIdName(data);
@@ -50,7 +50,7 @@ export default function Autocomplete() {
           <div className={'pokemonBox'}>
             <Link key={index} to={`/pokedex/${suggestion.id}`}>
               <li key={index} className="pokedexAutocomplete">
-                <img src={`/src/assets/images/spritesPixel/${zeroFill(suggestion.id)}.jpg`} alt={suggestion.id.toString()} />
+                <img src={`https://pokeguess.fun/assets/images/spritesPixel/${zeroFill(suggestion.id)}.jpg`} alt={suggestion.id.toString()} />
                 <p>{suggestion.name}</p>
               </li>
               <div className="line"></div>

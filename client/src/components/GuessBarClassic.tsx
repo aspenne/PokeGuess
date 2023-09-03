@@ -57,7 +57,7 @@ export default function GuessBarClassic({ id, onData }:Props) {
   }, [pokemons])
 
   useEffect(() => {
-    fetch(`/api/PkmnClassic/${id}`)
+    fetch(`https://pokeguess.up.railway.app/api/PkmnClassic/${id}`)
       .then(response => response.json())
       .then(data => {
         const newData = data.map((newPokemon: PokemonData, index: number) => ({
@@ -73,7 +73,7 @@ export default function GuessBarClassic({ id, onData }:Props) {
   }, [id]);
 
   useEffect(() => {
-    fetch(`/api/PkmnClassicDaily`)
+    fetch(`https://pokeguess.up.railway.app/api/PkmnClassicDaily`)
       .then(response => response.json())
       .then(data => {
         setPokemonToGuess(data[0]);
@@ -140,14 +140,14 @@ export default function GuessBarClassic({ id, onData }:Props) {
       {pokemons.map((pokemon, index) => (
         <div key={index} className={'pokemonBox'}>
           <li>
-            <img src={`/src/assets/images/spritesPixel/${zeroFill(Number(pokemon.pokedexId))}.jpg`} alt=''/>
+            <img src={`https://pokeguess.fun/assets/images/spritesPixel/${zeroFill(Number(pokemon.pokedexId))}.jpg`} alt=''/>
           </li>
           <li>
-            <img src={`/src/assets/images/types/${pokemon.type_1_name}.svg`} alt={pokemon.type_1_name} />
+            <img src={`https://pokeguess.fun/assets/images/types/${pokemon.type_1_name}.svg`} alt={pokemon.type_1_name} />
             <img src={ pokemonToGuess && typeValid(pokemon.type_1_name, pokemonToGuess.type_1_name)} alt="marker" />
           </li>
           <li>
-            {pokemon.type_2_name && <img src={`/src/assets/images/types/${pokemon.type_2_name}.svg`} alt={pokemon.type_2_name} />} 
+            {pokemon.type_2_name && <img src={`https://pokeguess.fun/assets/images/types/${pokemon.type_2_name}.svg`} alt={pokemon.type_2_name} />} 
             {<img src={ pokemonToGuess && typeValid(pokemon.type_2_name, pokemonToGuess.type_2_name)} alt="marker" />}            
           </li>
           <li>

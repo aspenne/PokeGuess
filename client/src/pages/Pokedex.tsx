@@ -30,7 +30,7 @@ export default function Pokedex() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
   useEffect(() => {
-    fetch('/api/Pkmns')
+    fetch('https://pokeguess.up.railway.app/api/Pkmns')
     .then(response => response.json())
   .then(data => {
       setPokemons(data);
