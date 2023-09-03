@@ -12,7 +12,7 @@ const DB_USER = process.env.DB_USER;
 const DB_PASSWORD = process.env.DB_PASSWORD;
 const DB_DATABASE = process.env.DB_DATABASE;
 
-const dbConnection = mysql.createConnection({
+const dbConnection = mysql.createPool({
   host: DB_HOST,
   user: DB_USER,
   password: DB_PASSWORD,
@@ -61,7 +61,7 @@ function job(){
                 const successMessage = `Inserted data into daily tables on ${currentDate}\n\tpokemon classic : ${randomIdClassic}\n\tpokemon shadow : ${randomIdShadow}\n\tpokemon hard : ${randomIdShiny}\n`;
                 fs.appendFile(logFilePath, successMessage, (error) => {
                   if (error) {
-                    fs.appendFile(logFilePath, "Error writing to log file:", error);
+                    fs.appendFile(logFilePath, "Error writing to cron log file:", error);
                   }
                 });
               }
