@@ -222,7 +222,7 @@ const getShinyPkmn = `
 router.get("/Pkmns", (req, res) => {
   connection.query(getPokemonsInfoQuery, (err, results, fields) => {
     if (err) {
-      console.error("Error executing query:", err);
+      console.error("Error executing query Pkmns:", err);
       return;
     }
     res.json(results);
@@ -232,7 +232,7 @@ router.get("/Pkmns", (req, res) => {
 router.get("/PkmnClassic", (req, res) => {
   connection.query(getPokemonsInfoQuery, (err, results, fields) => {
     if (err) {
-      console.error("Error executing query:", err);
+      console.error("Error executing query PkmnClassic:", err);
       return;
     }
     res.json(results);
@@ -242,7 +242,7 @@ router.get("/PkmnClassic", (req, res) => {
 router.get("/PkmnClassicDaily", (req, res) => {
   connection.query(getClassicPkmn, (err, results, fields) => {
     if (err) {
-      console.error("Error executing query:", err);
+      console.error("Error executing query PkmnClassicDaily:", err);
       return;
     }
     res.json(results);
@@ -252,7 +252,7 @@ router.get("/PkmnClassicDaily", (req, res) => {
 router.get("/PkmnShadowDaily", (req, res) => {
   connection.query(getShadowPkmn, (err, results, fields) => {
     if (err) {
-      console.error("Error executing query:", err);
+      console.error("Error executing query PkmnShadowDaily:", err);
       return;
     }
     res.json(results);
@@ -262,7 +262,7 @@ router.get("/PkmnShadowDaily", (req, res) => {
 router.get("/PkmnShinyDaily", (req, res) => {
   connection.query(getShinyPkmn, (err, results, fields) => {
     if (err) {
-      console.error("Error executing query:", err);
+      console.error("Error executing query PkmnShinyDaily:", err);
       return;
     }
     res.json(results);
@@ -272,7 +272,7 @@ router.get("/PkmnShinyDaily", (req, res) => {
 router.get("/PkmnsIdName", (req, res) => {
   connection.query('SELECT pokedexId, name_fr, name_en From u697843051_PokeGuess.Pokemon', (err, results, fields) => {
     if (err) {
-      console.error("Error executing query:", err);
+      console.error("Error executing query PkmnsIdName:", err);
       return;
     }
     res.json(results);
@@ -292,7 +292,7 @@ router.get("/Pkmn/:id", (req, res) => {
     [pokemonId],
     (err, results, fields) => {
       if (err) {
-        console.error("Error executing query:", err);
+        console.error("Error executing query Pkmn/:id:", err);
         return res
           .status(500)
           .json({ error: "An error occurred while fetching data" });
@@ -315,7 +315,7 @@ router.get("/Evolution/:id", (req, res) => {
     [pokemonId],
     (err, results, fields) => {
       if (err) {
-        console.error("Error executing query:", err);
+        console.error("Error executing query Evolution/:id:", err);
         return res
           .status(500)
           .json({ error: "An error occurred while fetching data" });
@@ -338,7 +338,7 @@ router.get("/PkmnName/:id", (req, res) => {
     [pokemonId],
     (err, results, fields) => {
       if (err) {
-        console.error("Error executing query:", err);
+        console.error("Error executing query PkmnName/:id:", err);
         return res
           .status(500)
           .json({ error: "An error occurred while fetching data" });
@@ -357,7 +357,7 @@ router.get("/PkmnClassic/:id", (req, res) => {
     [pokemonId],
     (err, results, fields) => {
       if (err) {
-        console.error("Error executing query:", err);
+        console.error("Error executing query PkmnClassic/:id:", err);
         return res
           .status(500)
           .json({ error: "An error occurred while fetching data" });
@@ -376,7 +376,7 @@ router.get("/PkmnShadow/:id", (req, res) => {
     [pokemonId],
     (err, results, fields) => {
       if (err) {
-        console.error("Error executing query:", err);
+        console.error("Error executing query PkmnShadow/:id:", err);
         return res
           .status(500)
           .json({ error: "An error occurred while fetching data" });
