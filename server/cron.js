@@ -1,9 +1,6 @@
 const schedule = require("node-schedule");
 const mysql = require("mysql2");
-const fs = require("fs");
-const path = require("path");
 const dotenv = require("dotenv");
-const moment = require("moment-timezone");
 
 dotenv.config();
 
@@ -19,16 +16,12 @@ const dbConnection = mysql.createPool({
   database: DB_DATABASE,
 });
 
-const logFilePath = path.join(__dirname, "logs/cron.log");
 
 function job(){
-  schedule.scheduleJob("0 0 * * * *", () => {
+  schedule.scheduleJob("0 0 * * *", () => {
     const randomIdClassic = Math.floor(Math.random() * 1010) + 1;
     const randomIdShadow = Math.floor(Math.random() * 1010) + 1;
     const randomIdShiny = Math.floor(Math.random() * 1010) + 1;
-
-    const parisTime = moment().tz("Europe/Paris"); // Obtenir la date et l'heure actuelles à Paris
-    const currentDate = parisTime.format("YYYY-MM-DD"); // Formater la date au format souhaité
 
     const insertQueryClassic = `
       INSERT INTO PokeGuess.ClassicDaily (id, Daily)
@@ -59,11 +52,6 @@ function job(){
               if (err) {
               } else {
                 const successMessage = `Inserted data into daily tables on ${currentDate}\n\tpokemon classic : ${randomIdClassic}\n\tpokemon shadow : ${randomIdShadow}\n\tpokemon hard : ${randomIdShiny}\n`;
-                fs.appendFile(logFilePath, successMessage, (error) => {
-                  if (error) {
-                    fs.appendFile(logFilePath, "Error writing to cron log file:", error);
-                  }
-                });
               }
             });
           }
