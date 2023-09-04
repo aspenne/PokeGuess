@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import math from "../functions/math";
 import ParticlesConfetti from "../components/confetti";
 import Congrats from "../components/Congrats";
+import { scheduleCacheCleanup } from "../functions/cron"
 const MemoizedGuessBarShadow = memo(GuessBar);
 
 interface PokemonData {
@@ -28,6 +29,10 @@ export default function ShadowGuess() {
   const [showConfetti, setShowConfetti] = useState(false);
   const [showCongrats, setShowCongrats] = useState(false);
   const [pokemonFounded, setPokemonFounded] = useState<boolean>(false)
+
+  useEffect(() => {
+    scheduleCacheCleanup();
+  }, []);
 
   const handleChildDataId = (data: number) => {
     setPokemonId(data);

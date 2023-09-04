@@ -8,6 +8,8 @@ import HellsHorns from '../assets/images/navbar/hells-horns.svg'
 import HellsHornsHover from '../assets/images/navbar/hells-hornsHover.svg'
 import Congrats from '../components/Congrats';
 import ParticlesConfetti from '../components/confetti';
+import { scheduleCacheCleanup } from "../functions/cron"
+
 
 interface PokemonData {
   type_1_name: string;
@@ -35,7 +37,9 @@ export default function ClassicBar() {
   const [showCongrats, setShowCongrats] = useState(false);
   const [pokemonFounded, setPokemonFounded] = useState<boolean>(false)
 
-  
+  useEffect(() => {
+    scheduleCacheCleanup();
+  }, []);
 
   const handleChildDataId = (data: number) => {
     setPokemonId(data);

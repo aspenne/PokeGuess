@@ -50,7 +50,7 @@ export default function Pokedex() {
           <h1> Bienvenue dans votre Pokédex</h1>
           <div className='pokedex-btn'>
             <button className='pokedex-btn-active'> Pokédex international </button>
-            <button className='pokedex-btn-passive'> Mon Pokédex </button>
+            {/* <button className='pokedex-btn-passive'> Mon Pokédex </button> */}
           </div>
           <div>
               <Autocomplete/>

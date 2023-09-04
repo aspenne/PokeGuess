@@ -8,6 +8,8 @@ import angel from '../assets/images/navbar/angel.svg'
 import angelHover from '../assets/images/navbar/angelHover.svg'
 import Congrats from '../components/Congrats';
 import ParticlesConfetti from '../components/confetti';
+import { scheduleCacheCleanup } from "../functions/cron"
+
 
 interface PokemonData {
   type_1_name: string;
@@ -34,6 +36,10 @@ export default function ClassicBar() {
   const [showConfetti, setShowConfetti] = useState(false);
   const [showCongrats, setShowCongrats] = useState(false);
   const [pokemonFounded, setPokemonFounded] = useState<boolean>(false)
+
+  useEffect(() => {
+    scheduleCacheCleanup();
+  }, []);
 
   const handleChildDataId = useCallback((data: number) => {
     setPokemonId(data);
