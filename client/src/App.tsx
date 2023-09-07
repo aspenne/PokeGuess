@@ -6,6 +6,7 @@ import PokemonInfo from './pages/PokemonInfo';
 import Classic from './pages/ClassicGuess';
 import Hard from './pages/HardGuess';
 import ShadowGuess from './pages/ShadowGuess';
+import Buldi from './pages/BuldiGuess';
 import { scheduleCacheCleanup } from './functions/cron.js';
 
 function App(){
@@ -22,7 +23,7 @@ function App(){
 				<Route path='/pokedex/:id' element={ <PokemonInfo/> }/>
 				<Route path='/classic' element={ <Classic/> }/>
 				<Route path='/hard' element={ <Hard/> }/>
-				<Route path='/hard' element={ <Hard/> }/>
+				<Route path='/buldi' element={ <Buldi/> }/>
 				<Route path='/shadow' element={ <ShadowGuess/> }/>
 			</Routes>
 		</div>

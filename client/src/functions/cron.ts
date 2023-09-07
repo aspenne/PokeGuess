@@ -11,6 +11,7 @@ export function scheduleCacheCleanup() {
     localStorage.removeItem('pokemonsStorageShadow');
     localStorage.removeItem('pokemonsStorageClassic');
     localStorage.removeItem('pokemonsStorageHard');
+    localStorage.removeItem('BuldersStorage');
 
     localStorage.setItem('lastCacheCleanup', currentDate.toISOString());
   }
