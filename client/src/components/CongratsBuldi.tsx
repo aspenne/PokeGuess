@@ -26,7 +26,7 @@ const Congrats: React.FC<CongratsProps> = ({active }) => {
     active && (
       <div className='congrats'>
         <h3>Félicitations</h3>
-        <p>Tu as trouvé Florianne Alizard en 1 essai !</p>
+        <p>Tu as trouvé Floriane Alizard en 1 essai !</p>
         <img src={`https://pokeguess.fun/assets/images/buldi/flo.gif`} alt={'bulder gif'} />
        <div className={'pokemon-date'}>
           <p>Prochain bulder dans : </p>

@@ -33,7 +33,7 @@ export default function GuessBarBuldi({ id, onData }: Props) {
       setBulders((prevBulders) => [
         ...prevBulders,
         {
-          name: 'Florianne Alizard',
+          name: 'Floriane Alizard',
           id: 1,
           positionId: 1,
         },

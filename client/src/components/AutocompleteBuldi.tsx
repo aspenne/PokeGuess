@@ -14,7 +14,7 @@ interface ClassicBarProps {
 export default function Autocomplete({onData, bulderFound}: ClassicBarProps) {
   const [value, setValue] = useState("");
   const [Bulder, setBulder] = useState<Bulder[]>([
-    { name: 'Florianne Alizard', id: 1 },
+    { name: 'Floriane Alizard', id: 1 },
   ]);
   const [filteredSuggestions, setFilteredSuggestions] = useState<{id:number, name:string}[]>([]);
 
@@ -61,7 +61,7 @@ export default function Autocomplete({onData, bulderFound}: ClassicBarProps) {
                 setBulder(bulder => bulder.filter(bulder => bulder.id !== suggestion.id));
               }}>
                 <img src={`https://pokeguess.fun/assets/images/buldi/FloPixel.png`} alt={'bulder'} />
-                <p> Florianne Alizard </p>
+                <p> Floriane Alizard </p>
               </li>
               <div className="line"></div>
             </div>

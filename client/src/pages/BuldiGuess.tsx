@@ -70,7 +70,7 @@ export default function BuldiGuess() {
           <img
             className={'imageToGuess'}
             style={{filter: `brightness(${brightness}%)`}}
-            src={`https://pokeguess.fun/assets/images/Flo.png`} 
+            src={`https://pokeguess.fun/assets/images/buldi/Flo.png`} 
             alt={'bulder.png'} 
           />
           <AutoCompleteGuessBuldi
