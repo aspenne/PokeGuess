@@ -39,17 +39,17 @@ const getPokemonsInfoQuery = `
         P.weight,
         P.stade
     FROM
-        u697843051_PokeGuess.Pokemon AS P
+        u166478150_pokeguess.Pokemon AS P
     LEFT JOIN
-        u697843051_PokeGuess.Types AS T1 ON P.type_1 = T1.type_id
+        u166478150_pokeguess.Types AS T1 ON P.type_1 = T1.type_id
     LEFT JOIN
-        u697843051_PokeGuess.Types AS T2 ON P.type_2 = T2.type_id
+        u166478150_pokeguess.Types AS T2 ON P.type_2 = T2.type_id
     LEFT JOIN
-        u697843051_PokeGuess.Talents AS Ta1 ON P.talent_1 = Ta1.talent_id
+        u166478150_pokeguess.Talents AS Ta1 ON P.talent_1 = Ta1.talent_id
     LEFT JOIN
-        u697843051_PokeGuess.Talents AS Ta2 ON P.talent_2 = Ta2.talent_id
+        u166478150_pokeguess.Talents AS Ta2 ON P.talent_2 = Ta2.talent_id
     LEFT JOIN
-        u697843051_PokeGuess.Talents AS Ta3 ON P.talent_3 = Ta3.talent_id
+        u166478150_pokeguess.Talents AS Ta3 ON P.talent_3 = Ta3.talent_id
 `;
 
 const getPokemonInfoQueryById = `
@@ -74,17 +74,17 @@ const getPokemonInfoQueryById = `
         P.weight,
         P.stade
     FROM
-        u697843051_PokeGuess.Pokemon AS P
+        u166478150_pokeguess.Pokemon AS P
     LEFT JOIN
-        u697843051_PokeGuess.Types AS T1 ON P.type_1 = T1.type_id
+        u166478150_pokeguess.Types AS T1 ON P.type_1 = T1.type_id
     LEFT JOIN
-        u697843051_PokeGuess.Types AS T2 ON P.type_2 = T2.type_id
+        u166478150_pokeguess.Types AS T2 ON P.type_2 = T2.type_id
     LEFT JOIN
-        u697843051_PokeGuess.Talents AS Ta1 ON P.talent_1 = Ta1.talent_id
+        u166478150_pokeguess.Talents AS Ta1 ON P.talent_1 = Ta1.talent_id
     LEFT JOIN
-        u697843051_PokeGuess.Talents AS Ta2 ON P.talent_2 = Ta2.talent_id
+        u166478150_pokeguess.Talents AS Ta2 ON P.talent_2 = Ta2.talent_id
     LEFT JOIN
-        u697843051_PokeGuess.Talents AS Ta3 ON P.talent_3 = Ta3.talent_id
+        u166478150_pokeguess.Talents AS Ta3 ON P.talent_3 = Ta3.talent_id
     WHERE
         P.pokedexId = ?
   `;
@@ -106,17 +106,17 @@ const getPokemonInfoQueryById = `
       P.stade,
       P.generation
   FROM
-      u697843051_PokeGuess.Pokemon AS P
+      u166478150_pokeguess.Pokemon AS P
   LEFT JOIN
-      u697843051_PokeGuess.Types AS T1 ON P.type_1 = T1.type_id
+      u166478150_pokeguess.Types AS T1 ON P.type_1 = T1.type_id
   LEFT JOIN
-      u697843051_PokeGuess.Types AS T2 ON P.type_2 = T2.type_id
+      u166478150_pokeguess.Types AS T2 ON P.type_2 = T2.type_id
   LEFT JOIN
-      u697843051_PokeGuess.Talents AS Ta1 ON P.talent_1 = Ta1.talent_id
+      u166478150_pokeguess.Talents AS Ta1 ON P.talent_1 = Ta1.talent_id
   LEFT JOIN
-      u697843051_PokeGuess.Talents AS Ta2 ON P.talent_2 = Ta2.talent_id
+      u166478150_pokeguess.Talents AS Ta2 ON P.talent_2 = Ta2.talent_id
   LEFT JOIN
-      u697843051_PokeGuess.Talents AS Ta3 ON P.talent_3 = Ta3.talent_id
+      u166478150_pokeguess.Talents AS Ta3 ON P.talent_3 = Ta3.talent_id
   WHERE
       P.pokedexId = ?
 `;
@@ -127,7 +127,7 @@ const getPokemonShadowById = `
       P.name_fr,
       P.name_en
   FROM
-      u697843051_PokeGuess.Pokemon AS P
+      u166478150_pokeguess.Pokemon AS P
   WHERE
       P.pokedexId = ?
 `;
@@ -139,7 +139,7 @@ const getEvolutionById = `
     E.next_pokedexId, 
     E.condition_evolution 
   FROM 
-    u697843051_PokeGuess.Evolutions as E
+    u166478150_pokeguess.Evolutions as E
   WHERE 
     E.PokedexId = ?
 `;
@@ -148,7 +148,7 @@ const getNameById = `
   SELECT 
     P.name_fr
   FROM 
-    u697843051_PokeGuess.Pokemon as P
+    u166478150_pokeguess.Pokemon as P
   WHERE 
     P.PokedexId = ?
 `;
@@ -162,19 +162,19 @@ const getClassicPkmn = `
     Ta2.talent_name AS talent_2_name,
     Ta3.talent_name AS talent_3_name
   FROM 
-    u697843051_PokeGuess.ClassicDaily AS Cd
+    u166478150_pokeguess.ClassicDaily AS Cd
   Inner JOIN
-    u697843051_PokeGuess.Pokemon AS P ON P.pokedexId = Cd.id
+    u166478150_pokeguess.Pokemon AS P ON P.pokedexId = Cd.id
   LEFT JOIN
-    u697843051_PokeGuess.Types AS T1 ON P.type_1 = T1.type_id
+    u166478150_pokeguess.Types AS T1 ON P.type_1 = T1.type_id
   LEFT JOIN
-    u697843051_PokeGuess.Types AS T2 ON P.type_2 = T2.type_id
+    u166478150_pokeguess.Types AS T2 ON P.type_2 = T2.type_id
   LEFT JOIN
-    u697843051_PokeGuess.Talents AS Ta1 ON P.talent_1 = Ta1.talent_id
+    u166478150_pokeguess.Talents AS Ta1 ON P.talent_1 = Ta1.talent_id
   LEFT JOIN
-    u697843051_PokeGuess.Talents AS Ta2 ON P.talent_2 = Ta2.talent_id
+    u166478150_pokeguess.Talents AS Ta2 ON P.talent_2 = Ta2.talent_id
   LEFT JOIN
-    u697843051_PokeGuess.Talents AS Ta3 ON P.talent_3 = Ta3.talent_id
+    u166478150_pokeguess.Talents AS Ta3 ON P.talent_3 = Ta3.talent_id
   ORDER BY 
     daily DESC
   LIMIT 1;
@@ -184,7 +184,7 @@ const getShadowPkmn = `
   SELECT 
     *
   FROM 
-    u697843051_PokeGuess.ShadowDaily
+    u166478150_pokeguess.ShadowDaily
   ORDER BY 
     daily DESC
   LIMIT 1;
@@ -199,19 +199,19 @@ const getShinyPkmn = `
     Ta2.talent_name AS talent_2_name,
     Ta3.talent_name AS talent_3_name
   FROM 
-    u697843051_PokeGuess.ShinyDaily AS Sd
+    u166478150_pokeguess.ShinyDaily AS Sd
   Inner JOIN
-    u697843051_PokeGuess.Pokemon AS P ON P.pokedexId = Sd.id
+    u166478150_pokeguess.Pokemon AS P ON P.pokedexId = Sd.id
   LEFT JOIN
-    u697843051_PokeGuess.Types AS T1 ON P.type_1 = T1.type_id
+    u166478150_pokeguess.Types AS T1 ON P.type_1 = T1.type_id
   LEFT JOIN
-    u697843051_PokeGuess.Types AS T2 ON P.type_2 = T2.type_id
+    u166478150_pokeguess.Types AS T2 ON P.type_2 = T2.type_id
   LEFT JOIN
-    u697843051_PokeGuess.Talents AS Ta1 ON P.talent_1 = Ta1.talent_id
+    u166478150_pokeguess.Talents AS Ta1 ON P.talent_1 = Ta1.talent_id
   LEFT JOIN
-    u697843051_PokeGuess.Talents AS Ta2 ON P.talent_2 = Ta2.talent_id
+    u166478150_pokeguess.Talents AS Ta2 ON P.talent_2 = Ta2.talent_id
   LEFT JOIN
-    u697843051_PokeGuess.Talents AS Ta3 ON P.talent_3 = Ta3.talent_id
+    u166478150_pokeguess.Talents AS Ta3 ON P.talent_3 = Ta3.talent_id
   ORDER BY 
     daily DESC
   LIMIT 1;
@@ -270,7 +270,7 @@ router.get("/PkmnShinyDaily", (req, res) => {
 });
 
 router.get("/PkmnsIdName", (req, res) => {
-  connection.query('SELECT pokedexId, name_fr, name_en From u697843051_PokeGuess.Pokemon', (err, results, fields) => {
+  connection.query('SELECT pokedexId, name_fr, name_en From u166478150_pokeguess.Pokemon', (err, results, fields) => {
     if (err) {
       console.error("Error executing query PkmnsIdName:", err);
       return;
