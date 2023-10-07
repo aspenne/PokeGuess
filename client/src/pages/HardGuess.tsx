@@ -81,7 +81,7 @@ export default function ClassicBar() {
       <Congrats
         pokemonId={Number(pokemonToGues?.pokedexId)}
         active={showCongrats}
-        attempt={pokemons?.length}
+        attempt={pokemons?.length || 0}
         isShiny={true}
         page={'hard'}
       />

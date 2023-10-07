@@ -37,14 +37,13 @@ interface Evolution {
 
 type EvolutionList = Evolution[];
 
-
 const typeColor = {
   Combat: '#e74347',
   Roche: '#c5b489',
   Spectre: '#7773d4',
   Vol: '#a6c2f2',
   Fee: '#f3a7e7',
-  Electrik: '#edd53e',
+  Electric: '#edd53e',
   Dragon: '#0c69c8',
   Plante: '#52f618',
   Feu: '#e87912',
@@ -70,7 +69,7 @@ export default function PokemonInfoStats() {
   const [activeContent, setActiveContent] = useState<string>('');
   const [navItems, setNavItems] = useState<NavItemProps[]>([
     { id: 0, text: 'Stats', active: true},
-    { id: 1, text: 'Talents', active: false},
+    // { id: 1, text: 'Talents', active: false},
     { id: 2, text: 'Evolutions', active: false},
   ]);
 
@@ -136,8 +135,8 @@ export default function PokemonInfoStats() {
     setNavItems(updatedNavItems);
     if (clickedIndex === 0) {
       setActiveContent('Stats');
-    } else if (clickedIndex === 1) {
-      setActiveContent('Talents');
+    // } else if (clickedIndex === 1) {
+    //   setActiveContent('Talents');
     } else if (clickedIndex === 2) {
       setActiveContent('Evolutions');
     }
@@ -182,9 +181,9 @@ export default function PokemonInfoStats() {
             ))}
           </article>
         }
-        {activeContent === 'Talents' && 
+        {/* {activeContent === 'Talents' && 
           <div></div>
-        }
+        } */}
         {activeContent === 'Evolutions' &&
          <article className='evolution'>
           {evolution.map((item) => (

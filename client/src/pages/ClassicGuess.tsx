@@ -61,7 +61,7 @@ export default function ClassicBar() {
   }, []);
 
   useEffect(() => {
-    if (pokemonToGues && pokemons && pokemons.length > 1) {
+    if (pokemonToGues && pokemons && pokemons.length > 0) {
       if (pokemons.reverse()[0].pokedexId === pokemonToGues.pokedexId || pokemons[0].pokedexId === pokemonToGues.pokedexId) {
         ParticlesConfetti; 
         setPokemonFounded(true);
@@ -70,6 +70,8 @@ export default function ClassicBar() {
       }
     }
   }, [pokemons, pokemonToGues]);
+
+  
   
 
   return (
@@ -81,7 +83,7 @@ export default function ClassicBar() {
       <Congrats
         pokemonId={Number(pokemonToGues?.pokedexId)}
         active={showCongrats}
-        attempt={pokemons?.length}
+        attempt={pokemons?.length || 0}
         isShiny={false}
         page={'classic'}
       />

@@ -12,7 +12,7 @@ import hellsHover from '../assets/images/navbar/hells-hornsHover.svg';
 
 interface CongratsProps {
   pokemonId: number;
-  attempt: number | undefined;
+  attempt: number;
   active: boolean;
   isShiny: boolean;
   page: string;
@@ -77,7 +77,7 @@ const Congrats: React.FC<CongratsProps> = ({ pokemonId, attempt, active, isShiny
     active && (
       <div className='congrats'>
         <h3>Félicitations</h3>
-        <p>Tu as trouvé le pokémon en {attempt} essais !</p>
+        <p>Tu as trouvé le pokémon en {attempt} essai {attempt > 1 ? 's' : ''} !</p>
         {isShiny === true ?
         <img src={`https://pokeguess.fun/assets/images/spritesShiny/${math.zeroFill(pokemonId)}_shiny.jpg`} alt={pokemonId + 'image'} />:
         <img src={`https://pokeguess.fun/assets/images/sprites/${math.zeroFill(pokemonId)}.jpg`} alt={pokemonId + 'image'} />

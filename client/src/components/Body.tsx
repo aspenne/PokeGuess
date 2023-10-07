@@ -9,10 +9,11 @@ function Body() {
     return (
         <div className='body-home'>
             <section className='container'>
-                <article className='right-part'>
-                    <h1> Bienvenue sur PokéGuess </h1>
-                    <p> Chaque jour, un Pokémon sauvage se cache.C'est à toi, dresseur de Pokémon, de l'attraper (le deviner) !
+                <article className='right-part' >
+                    <h1 style={{textAlign: 'start'}}> Bienvenue sur PokéGuess </h1>
+                    <p style={{textAlign: 'start'}}> Chaque jour, un Pokémon sauvage se cache.C'est à toi, dresseur de Pokémon, de l'attraper (le deviner) !
                         Réussirez-vous à retrouver les 1009 Pokémons aux travers des 9 différentes générations ?</p>
+                        <h4> La seconde génération est arrivé ! </h4>
                 <div className='btn-home'>
                     <Link to={`/classic`}>
                     <button> Je trouve le Pokémon </button>

@@ -59,7 +59,6 @@ export default function ShadowGuess() {
       if (pokemons.reverse()[0].pokedexId === Number(pokemonToGues.id) || pokemons[0].pokedexId === Number(pokemonToGues.id)) {
         ParticlesConfetti; 
         setPokemonFounded(true);
-        setBrightness(100)
         setShowConfetti(true);
         setShowCongrats(true);
       }
@@ -74,7 +73,7 @@ export default function ShadowGuess() {
           <Congrats
             pokemonId={Number(pokemonToGues?.id)}
             active={showCongrats}
-            attempt={pokemons?.length}
+            attempt={pokemons?.length || 0}
             isShiny={false}
             page={'shadow'}
           />
