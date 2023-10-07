@@ -21,9 +21,9 @@ const dbConnection = mysql.createPool({
 function job(){
   schedule.scheduleJob("00 22 * * *", () => {
     console.log('schedule run');
-    const randomIdClassic = Math.floor(Math.random() * 151) + 1;
-    const randomIdShadow = Math.floor(Math.random() * 151) + 1;
-    const randomIdShiny = Math.floor(Math.random() * 151) + 1;
+    const randomIdClassic = Math.floor(Math.random() * 250) + 1;
+    const randomIdShadow = Math.floor(Math.random() * 250) + 1;
+    const randomIdShiny = Math.floor(Math.random() * 250) + 1;
 
     const insertQueryClassic = `
       INSERT INTO u166478150_pokeguess.ClassicDaily (id, Daily)
