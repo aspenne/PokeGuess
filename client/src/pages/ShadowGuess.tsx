@@ -1,12 +1,12 @@
-import { memo, useState, useEffect } from "react";
+import { memo, useEffect, useState } from "react";
 import AutoCompleteGuess from "../components/AutocompleteGuess";
-import Navbar from "../components/Navbar";
-import GuessBar from "../components/GuessBarShadow";
-import Footer from "../components/Footer";
-import math from "../functions/math";
 import ParticlesConfetti from "../components/confetti";
 import Congrats from "../components/Congrats";
-import { scheduleCacheCleanup } from "../functions/cron"
+import Footer from "../components/Footer";
+import GuessBar from "../components/GuessBarShadow";
+import Navbar from "../components/Navbar";
+import { scheduleCacheCleanup } from "../functions/cron";
+import math from "../functions/math";
 const MemoizedGuessBarShadow = memo(GuessBar);
 
 interface PokemonData {
@@ -44,7 +44,7 @@ export default function ShadowGuess() {
   };
 
   useEffect(() => {
-    fetch(`https://pokeguess.up.railway.app/api/PkmnShadowDaily`)
+    fetch(`http://pokeguess.fr:3000/api/PkmnShadowDaily`)
       .then(response => response.json())
       .then(data => {
         setPokemonToGuess(data[0]);
@@ -93,7 +93,7 @@ export default function ShadowGuess() {
           <img
             className={'imageToGuess'}
             style={{filter: `brightness(${brightness}%)`}}
-            src={`https://pokeguess.fun/assets/images/sprites/${pokemonToGues?.id ? math.zeroFill(parseInt(pokemonToGues.id)) + '.jpg' : ''}`} 
+            src={`http://pokeguess.fr/assets/sprites/${pokemonToGues?.id ? math.zeroFill(parseInt(pokemonToGues.id)) + '.jpg' : ''}`} 
             alt={pokemonToGues?.id?.toString()} 
           />
           <AutoCompleteGuess

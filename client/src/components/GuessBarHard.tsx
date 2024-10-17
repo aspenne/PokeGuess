@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import medium from '../assets/images/icons/medium.svg'
 import redArrowDown from '../assets/images/icons/redArrowDown.svg'
 import redArrowUp from '../assets/images/icons/redArrowUp.svg'
@@ -57,7 +57,7 @@ export default function GuessBarHard({ id, onData }:Props) {
   }, [pokemons]);
 
   useEffect(() => {
-    fetch(`https://pokeguess.up.railway.app/api/PkmnClassic/${id}`)
+    fetch(`http://pokeguess.fr:3000/api/PkmnClassic/${id}`)
       .then(response => response.json())
       .then(data => {
         const newData = data.map((newPokemon: PokemonData, index: number) => ({
@@ -73,7 +73,7 @@ export default function GuessBarHard({ id, onData }:Props) {
   }, [id]);
 
   useEffect(() => {
-    fetch(`https://pokeguess.up.railway.app/api/PkmnShinyDaily`)
+    fetch(`http://pokeguess.fr:3000/api/PkmnShinyDaily`)
       .then(response => response.json())
       .then(data => {
         setPokemonToGuess(data[0]);
@@ -138,14 +138,14 @@ export default function GuessBarHard({ id, onData }:Props) {
       {pokemons.map((pokemon, index) => (
         <div key={index} className={'pokemonBox'}>
           <li>
-            <img src={`https://pokeguess.fun/assets/images/spritesPixel/${zeroFill(Number(pokemon.pokedexId))}.jpg`} alt=''/>
+            <img src={`http://pokeguess.fr/assets/spritesPixel/${zeroFill(Number(pokemon.pokedexId))}.jpg`} alt=''/>
           </li>
           <li>
-            <img src={`https://pokeguess.fun/assets/images/types/${pokemon.type_1_name}.svg`} alt={pokemon.type_1_name} />
+            <img src={`http://pokeguess.fr/assets/types/${pokemon.type_1_name}.svg`} alt={pokemon.type_1_name} />
             <img src={ pokemonToGuess && typeValid(pokemon.type_1_name, pokemonToGuess.type_1_name)} alt="marker" />
           </li>
           <li>
-            {pokemon.type_2_name && <img src={`https://pokeguess.fun/assets/images/types/${pokemon.type_2_name}.svg`} alt={pokemon.type_2_name} />} 
+            {pokemon.type_2_name && <img src={`http://pokeguess.fr/assets/types/${pokemon.type_2_name}.svg`} alt={pokemon.type_2_name} />} 
             {<img src={ pokemonToGuess && typeValid(pokemon.type_2_name, pokemonToGuess.type_2_name)} alt="marker" />}            
           </li>
           <li>

@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 type NavItemProps = {
   id: number
@@ -81,7 +81,7 @@ export default function PokemonInfoStats() {
 
   useEffect(() => {
     if (params.id !== undefined) {
-      fetch(`https://pokeguess.up.railway.app/api/Pkmn/${params.id}`)
+      fetch(`http://pokeguess.fr:3000/api/Pkmn/${params.id}`)
         .then(response => response.json())
         .then(data => {
           setPokemon(data[0]);
@@ -94,7 +94,7 @@ export default function PokemonInfoStats() {
 
   useEffect(() => {
     if (pokemon !== undefined) {
-      fetch(`https://pokeguess.up.railway.app/api/Evolution/${pokemon.pokedexId}`)
+      fetch(`http://pokeguess.fr:3000/api/Evolution/${pokemon.pokedexId}`)
         .then(response => response.json())
         .then(data => {
           setEvolution(data);
@@ -197,7 +197,7 @@ export default function PokemonInfoStats() {
                 </p>
                 <div>
                   <Link key={item.pre_pokedexId ?? item.next_pokedexId} to={`/pokedex/${item.pre_pokedexId ?? item.next_pokedexId}`}>
-                    <img src={`https://pokeguess.fun/assets/images/spritesPixel/${zeroFill(Number(item.pre_pokedexId ?? item.next_pokedexId))}.jpg`} alt='' />
+                    <img src={`http://pokeguess.fr/assets/spritesPixel/${zeroFill(Number(item.pre_pokedexId ?? item.next_pokedexId))}.jpg`} alt='' />
                   </Link>
                   <p></p>
                 </div>

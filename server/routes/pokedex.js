@@ -5,17 +5,21 @@ const mysql = require("mysql2");
 const router = Router();
 dotenv.config();
 
+
+
 const DB_HOST = process.env.DB_HOST;
 const DB_USER = process.env.DB_USER;
-const DB_PASSWORD = process.env.DB_PASSWORD; 
+const DB_PASSWORD = process.env.DB_PASSWORD;
 const DB_DATABASE = process.env.DB_DATABASE;
 
-const connection = mysql.createPool({
+const connection = mysql.createConnection({
   host: DB_HOST,
   user: DB_USER,
   password: DB_PASSWORD,
   database: DB_DATABASE,
 });
+
+connection.connect();
 
 const getPokemonsInfoQuery = `
     SELECT 
@@ -39,17 +43,17 @@ const getPokemonsInfoQuery = `
         P.weight,
         P.stade
     FROM
-        u166478150_pokeguess.Pokemon AS P
+        PokeGuess.Pokemon AS P
     LEFT JOIN
-        u166478150_pokeguess.Types AS T1 ON P.type_1 = T1.type_id
+        PokeGuess.Types AS T1 ON P.type_1 = T1.type_id
     LEFT JOIN
-        u166478150_pokeguess.Types AS T2 ON P.type_2 = T2.type_id
+        PokeGuess.Types AS T2 ON P.type_2 = T2.type_id
     LEFT JOIN
-        u166478150_pokeguess.Talents AS Ta1 ON P.talent_1 = Ta1.talent_id
+        PokeGuess.Talents AS Ta1 ON P.talent_1 = Ta1.talent_id
     LEFT JOIN
-        u166478150_pokeguess.Talents AS Ta2 ON P.talent_2 = Ta2.talent_id
+        PokeGuess.Talents AS Ta2 ON P.talent_2 = Ta2.talent_id
     LEFT JOIN
-        u166478150_pokeguess.Talents AS Ta3 ON P.talent_3 = Ta3.talent_id
+        PokeGuess.Talents AS Ta3 ON P.talent_3 = Ta3.talent_id
 `;
 
 const getPokemonInfoQueryById = `
@@ -74,17 +78,17 @@ const getPokemonInfoQueryById = `
         P.weight,
         P.stade
     FROM
-        u166478150_pokeguess.Pokemon AS P
+        PokeGuess.Pokemon AS P
     LEFT JOIN
-        u166478150_pokeguess.Types AS T1 ON P.type_1 = T1.type_id
+        PokeGuess.Types AS T1 ON P.type_1 = T1.type_id
     LEFT JOIN
-        u166478150_pokeguess.Types AS T2 ON P.type_2 = T2.type_id
+        PokeGuess.Types AS T2 ON P.type_2 = T2.type_id
     LEFT JOIN
-        u166478150_pokeguess.Talents AS Ta1 ON P.talent_1 = Ta1.talent_id
+        PokeGuess.Talents AS Ta1 ON P.talent_1 = Ta1.talent_id
     LEFT JOIN
-        u166478150_pokeguess.Talents AS Ta2 ON P.talent_2 = Ta2.talent_id
+        PokeGuess.Talents AS Ta2 ON P.talent_2 = Ta2.talent_id
     LEFT JOIN
-        u166478150_pokeguess.Talents AS Ta3 ON P.talent_3 = Ta3.talent_id
+        PokeGuess.Talents AS Ta3 ON P.talent_3 = Ta3.talent_id
     WHERE
         P.pokedexId = ?
   `;
@@ -106,17 +110,17 @@ const getPokemonInfoQueryById = `
       P.stade,
       P.generation
   FROM
-      u166478150_pokeguess.Pokemon AS P
+      PokeGuess.Pokemon AS P
   LEFT JOIN
-      u166478150_pokeguess.Types AS T1 ON P.type_1 = T1.type_id
+      PokeGuess.Types AS T1 ON P.type_1 = T1.type_id
   LEFT JOIN
-      u166478150_pokeguess.Types AS T2 ON P.type_2 = T2.type_id
+      PokeGuess.Types AS T2 ON P.type_2 = T2.type_id
   LEFT JOIN
-      u166478150_pokeguess.Talents AS Ta1 ON P.talent_1 = Ta1.talent_id
+      PokeGuess.Talents AS Ta1 ON P.talent_1 = Ta1.talent_id
   LEFT JOIN
-      u166478150_pokeguess.Talents AS Ta2 ON P.talent_2 = Ta2.talent_id
+      PokeGuess.Talents AS Ta2 ON P.talent_2 = Ta2.talent_id
   LEFT JOIN
-      u166478150_pokeguess.Talents AS Ta3 ON P.talent_3 = Ta3.talent_id
+      PokeGuess.Talents AS Ta3 ON P.talent_3 = Ta3.talent_id
   WHERE
       P.pokedexId = ?
 `;
@@ -127,7 +131,7 @@ const getPokemonShadowById = `
       P.name_fr,
       P.name_en
   FROM
-      u166478150_pokeguess.Pokemon AS P
+      PokeGuess.Pokemon AS P
   WHERE
       P.pokedexId = ?
 `;
@@ -139,7 +143,7 @@ const getEvolutionById = `
     E.next_pokedexId, 
     E.condition_evolution 
   FROM 
-    u166478150_pokeguess.Evolutions as E
+    PokeGuess.Evolutions as E
   WHERE 
     E.PokedexId = ?
 `;
@@ -148,7 +152,7 @@ const getNameById = `
   SELECT 
     P.name_fr
   FROM 
-    u166478150_pokeguess.Pokemon as P
+    PokeGuess.Pokemon as P
   WHERE 
     P.PokedexId = ?
 `;
@@ -162,19 +166,19 @@ const getClassicPkmn = `
     Ta2.talent_name AS talent_2_name,
     Ta3.talent_name AS talent_3_name
   FROM 
-    u166478150_pokeguess.ClassicDaily AS Cd
+    PokeGuess.ClassicDaily AS Cd
   Inner JOIN
-    u166478150_pokeguess.Pokemon AS P ON P.pokedexId = Cd.id
+    PokeGuess.Pokemon AS P ON P.pokedexId = Cd.id
   LEFT JOIN
-    u166478150_pokeguess.Types AS T1 ON P.type_1 = T1.type_id
+    PokeGuess.Types AS T1 ON P.type_1 = T1.type_id
   LEFT JOIN
-    u166478150_pokeguess.Types AS T2 ON P.type_2 = T2.type_id
+    PokeGuess.Types AS T2 ON P.type_2 = T2.type_id
   LEFT JOIN
-    u166478150_pokeguess.Talents AS Ta1 ON P.talent_1 = Ta1.talent_id
+    PokeGuess.Talents AS Ta1 ON P.talent_1 = Ta1.talent_id
   LEFT JOIN
-    u166478150_pokeguess.Talents AS Ta2 ON P.talent_2 = Ta2.talent_id
+    PokeGuess.Talents AS Ta2 ON P.talent_2 = Ta2.talent_id
   LEFT JOIN
-    u166478150_pokeguess.Talents AS Ta3 ON P.talent_3 = Ta3.talent_id
+    PokeGuess.Talents AS Ta3 ON P.talent_3 = Ta3.talent_id
   ORDER BY 
     daily DESC
   LIMIT 1;
@@ -184,7 +188,7 @@ const getShadowPkmn = `
   SELECT 
     *
   FROM 
-    u166478150_pokeguess.ShadowDaily
+    PokeGuess.ShadowDaily
   ORDER BY 
     daily DESC
   LIMIT 1;
@@ -199,30 +203,33 @@ const getShinyPkmn = `
     Ta2.talent_name AS talent_2_name,
     Ta3.talent_name AS talent_3_name
   FROM 
-    u166478150_pokeguess.ShinyDaily AS Sd
+    PokeGuess.ShinyDaily AS Sd
   Inner JOIN
-    u166478150_pokeguess.Pokemon AS P ON P.pokedexId = Sd.id
+    PokeGuess.Pokemon AS P ON P.pokedexId = Sd.id
   LEFT JOIN
-    u166478150_pokeguess.Types AS T1 ON P.type_1 = T1.type_id
+    PokeGuess.Types AS T1 ON P.type_1 = T1.type_id
   LEFT JOIN
-    u166478150_pokeguess.Types AS T2 ON P.type_2 = T2.type_id
+    PokeGuess.Types AS T2 ON P.type_2 = T2.type_id
   LEFT JOIN
-    u166478150_pokeguess.Talents AS Ta1 ON P.talent_1 = Ta1.talent_id
+    PokeGuess.Talents AS Ta1 ON P.talent_1 = Ta1.talent_id
   LEFT JOIN
-    u166478150_pokeguess.Talents AS Ta2 ON P.talent_2 = Ta2.talent_id
+    PokeGuess.Talents AS Ta2 ON P.talent_2 = Ta2.talent_id
   LEFT JOIN
-    u166478150_pokeguess.Talents AS Ta3 ON P.talent_3 = Ta3.talent_id
+    PokeGuess.Talents AS Ta3 ON P.talent_3 = Ta3.talent_id
   ORDER BY 
     daily DESC
   LIMIT 1;
 `;
 
+router.get("/", (req, res) => {
+  res.json({ message: "Welcome to the Pokédex API" });
+});
 
 
 router.get("/Pkmns", (req, res) => {
   connection.query(getPokemonsInfoQuery, (err, results, fields) => {
     if (err) {
-      console.error("Error executing query Pkmns:", err);
+      console.error("Error executing query:", err);
       return;
     }
     res.json(results);
@@ -232,7 +239,7 @@ router.get("/Pkmns", (req, res) => {
 router.get("/PkmnClassic", (req, res) => {
   connection.query(getPokemonsInfoQuery, (err, results, fields) => {
     if (err) {
-      console.error("Error executing query PkmnClassic:", err);
+      console.error("Error executing query:", err);
       return;
     }
     res.json(results);
@@ -242,7 +249,7 @@ router.get("/PkmnClassic", (req, res) => {
 router.get("/PkmnClassicDaily", (req, res) => {
   connection.query(getClassicPkmn, (err, results, fields) => {
     if (err) {
-      console.error("Error executing query PkmnClassicDaily:", err);
+      console.error("Error executing query:", err);
       return;
     }
     res.json(results);
@@ -252,7 +259,7 @@ router.get("/PkmnClassicDaily", (req, res) => {
 router.get("/PkmnShadowDaily", (req, res) => {
   connection.query(getShadowPkmn, (err, results, fields) => {
     if (err) {
-      console.error("Error executing query PkmnShadowDaily:", err);
+      console.error("Error executing query:", err);
       return;
     }
     res.json(results);
@@ -262,7 +269,7 @@ router.get("/PkmnShadowDaily", (req, res) => {
 router.get("/PkmnShinyDaily", (req, res) => {
   connection.query(getShinyPkmn, (err, results, fields) => {
     if (err) {
-      console.error("Error executing query PkmnShinyDaily:", err);
+      console.error("Error executing query:", err);
       return;
     }
     res.json(results);
@@ -270,9 +277,9 @@ router.get("/PkmnShinyDaily", (req, res) => {
 });
 
 router.get("/PkmnsIdName", (req, res) => {
-  connection.query('SELECT pokedexId, name_fr, name_en From u166478150_pokeguess.Pokemon', (err, results, fields) => {
+  connection.query('SELECT pokedexId, name_fr, name_en From PokeGuess.Pokemon', (err, results, fields) => {
     if (err) {
-      console.error("Error executing query PkmnsIdName:", err);
+      console.error("Error executing query:", err);
       return;
     }
     res.json(results);
@@ -292,7 +299,7 @@ router.get("/Pkmn/:id", (req, res) => {
     [pokemonId],
     (err, results, fields) => {
       if (err) {
-        console.error("Error executing query Pkmn/:id:", err);
+        console.error("Error executing query:", err);
         return res
           .status(500)
           .json({ error: "An error occurred while fetching data" });
@@ -315,7 +322,7 @@ router.get("/Evolution/:id", (req, res) => {
     [pokemonId],
     (err, results, fields) => {
       if (err) {
-        console.error("Error executing query Evolution/:id:", err);
+        console.error("Error executing query:", err);
         return res
           .status(500)
           .json({ error: "An error occurred while fetching data" });
@@ -338,7 +345,7 @@ router.get("/PkmnName/:id", (req, res) => {
     [pokemonId],
     (err, results, fields) => {
       if (err) {
-        console.error("Error executing query PkmnName/:id:", err);
+        console.error("Error executing query:", err);
         return res
           .status(500)
           .json({ error: "An error occurred while fetching data" });
@@ -357,7 +364,7 @@ router.get("/PkmnClassic/:id", (req, res) => {
     [pokemonId],
     (err, results, fields) => {
       if (err) {
-        console.error("Error executing query PkmnClassic/:id:", err);
+        console.error("Error executing query:", err);
         return res
           .status(500)
           .json({ error: "An error occurred while fetching data" });
@@ -376,7 +383,7 @@ router.get("/PkmnShadow/:id", (req, res) => {
     [pokemonId],
     (err, results, fields) => {
       if (err) {
-        console.error("Error executing query PkmnShadow/:id:", err);
+        console.error("Error executing query:", err);
         return res
           .status(500)
           .json({ error: "An error occurred while fetching data" });

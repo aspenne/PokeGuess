@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import search from '../assets/images/icons/vector.svg';
 
 interface PokemonData {
@@ -28,7 +28,7 @@ export default function Autocomplete({onData, pokedexId, pokemonFound}: ClassicB
   };
 
   useEffect(() => {
-    fetch('https://pokeguess.up.railway.app/api/PkmnsIdName')
+    fetch('http://pokeguess.fr:3000/api/PkmnsIdName')
       .then(response => response.json())
       .then(data => {
         setPokemonsIdName(data);
@@ -84,7 +84,7 @@ export default function Autocomplete({onData, pokedexId, pokemonFound}: ClassicB
                 handleButtonClick(suggestion.id);
                 setPokemonsIdName(pokemons => pokemons.filter(pokemon => pokemon.pokedexId !== suggestion.id));
               }}>
-                <img src={`https://pokeguess.fun/assets/images/spritesPixel/${zeroFill(suggestion.id)}.jpg`} alt={suggestion.id.toString()} />
+                <img src={`http://pokeguess.fr/assets/spritesPixel/${zeroFill(suggestion.id)}.jpg`} alt={suggestion.id.toString()} />
                 <p>{suggestion.name}</p>
               </li>
               <div className="line"></div>

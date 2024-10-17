@@ -1,3 +1,5 @@
+USE PokeGuess;
+
 -- Insert Into Types Table
 INSERT INTO Types (type_id, type_name) VALUES
 	(1, "Plante"),

@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
-import AutoCompleteGuess from '../components/AutocompleteGuess'
-import Navbar from '../components/Navbar'
-import GuessBar from '../components/GuessBarClassic';
-import Footer from '../components/Footer';
-import { Link } from 'react-router-dom'
-import HellsHorns from '../assets/images/navbar/hells-horns.svg'
-import HellsHornsHover from '../assets/images/navbar/hells-hornsHover.svg'
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import HellsHorns from '../assets/images/navbar/hells-horns.svg';
+import HellsHornsHover from '../assets/images/navbar/hells-hornsHover.svg';
+import AutoCompleteGuess from '../components/AutocompleteGuess';
 import Congrats from '../components/Congrats';
+import Footer from '../components/Footer';
+import GuessBar from '../components/GuessBarClassic';
+import Navbar from '../components/Navbar';
 import ParticlesConfetti from '../components/confetti';
-import { scheduleCacheCleanup } from "../functions/cron"
+import { scheduleCacheCleanup } from "../functions/cron";
 
 
 interface PokemonData {
@@ -50,7 +50,7 @@ export default function ClassicBar() {
   };
 
   useEffect(() => {
-    fetch(`https://pokeguess.up.railway.app/api/PkmnClassicDaily`)
+    fetch(`http://pokeguess.fr:3000/api/PkmnClassicDaily`)
       .then(response => response.json())
       .then(data => {
         setPokemonToGuess(data[0]);

@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react' 
-import { useParams, Link } from 'react-router-dom'
-import Navbar from '../components/Navbar';
-import PokemonInfoStats from '../components/PokemonInfoStats'
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
+import PokemonInfoStats from '../components/PokemonInfoStats';
 
 interface PokemonName {
   name_fr: string;
@@ -19,7 +19,7 @@ export default function PokemonInfo() {
   const params = useParams()
 
   useEffect(() => {
-    fetch(`https://pokeguess.up.railway.app/api/PkmnName/${params.id}`)
+    fetch(`http://pokeguess.fr:3000/api/PkmnName/${params.id}`)
     .then(response => response.json())
   .then(data => {
       setPokemonName(data[0]);
@@ -47,7 +47,7 @@ export default function PokemonInfo() {
               </Link>
             </div>
             <section className='pokemonImageStats'>
-              <img src={`https://pokeguess.fun/assets/images/sprites/${zeroFill(Number(params.id))}.jpg`}/>
+              <img src={`http://pokeguess.fr/assets/sprites/${zeroFill(Number(params.id))}.jpg`}/>
               <PokemonInfoStats/>        
             </section>
           </section>

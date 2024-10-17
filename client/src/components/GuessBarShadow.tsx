@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import math from "../functions/math";
 
 interface PokemonData {
@@ -31,7 +31,7 @@ export default function GuessBarShadow({ id, onData }: Props) {
   }, [pokemons]);
 
   useEffect(() => {
-    fetch(`https://pokeguess.up.railway.app/api/PkmnShadow/${id}`)
+    fetch(`http://pokeguess.fr:3000/api/PkmnShadow/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setPokemons((prevPokemons) => {
@@ -60,7 +60,7 @@ export default function GuessBarShadow({ id, onData }: Props) {
             <div key={index} className={"pokemonBox"}>
               <li>
                 <img
-                  src={`https://pokeguess.fun/assets/images/spritesPixel/${math.zeroFill(
+                  src={`http://pokeguess.fr/assets/spritesPixel/${math.zeroFill(
                     Number(pokemon.pokedexId)
                   )}.jpg`}
                   alt=""

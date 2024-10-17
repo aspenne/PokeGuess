@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import math from '../functions/math';
+import React, { useEffect, useState } from 'react';
 import Countdown from 'react-countdown';
 import { Link } from 'react-router-dom';
 import angel from '../assets/images/navbar/angel.svg';
-import ghost from '../assets/images/navbar/ghost.svg';
-import hells from '../assets/images/navbar/hells-horns.svg';
 import angelHover from '../assets/images/navbar/angelHover.svg';
+import ghost from '../assets/images/navbar/ghost.svg';
 import ghostHover from '../assets/images/navbar/ghostHover.svg';
+import hells from '../assets/images/navbar/hells-horns.svg';
 import hellsHover from '../assets/images/navbar/hells-hornsHover.svg';
+import math from '../functions/math';
 
 
 interface CongratsProps {
@@ -79,8 +79,8 @@ const Congrats: React.FC<CongratsProps> = ({ pokemonId, attempt, active, isShiny
         <h3>Félicitations</h3>
         <p>Tu as trouvé le pokémon en {attempt} essai {attempt > 1 ? 's' : ''} !</p>
         {isShiny === true ?
-        <img src={`https://pokeguess.fun/assets/images/spritesShiny/${math.zeroFill(pokemonId)}_shiny.jpg`} alt={pokemonId + 'image'} />:
-        <img src={`https://pokeguess.fun/assets/images/sprites/${math.zeroFill(pokemonId)}.jpg`} alt={pokemonId + 'image'} />
+        <img src={`http://pokeguess.fr/assets/spritesShiny/${math.zeroFill(pokemonId)}_shiny.jpg`} alt={pokemonId + 'image'} />:
+        <img src={`http://pokeguess.fr/assets/sprites/${math.zeroFill(pokemonId)}.jpg`} alt={pokemonId + 'image'} />
         }
        <div className={'pokemon-date'}>
           <p>Prochain Pokémon dans : </p>

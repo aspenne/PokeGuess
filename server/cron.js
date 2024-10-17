@@ -26,15 +26,15 @@ function job(){
     const randomIdShiny = Math.floor(Math.random() * 250) + 1;
 
     const insertQueryClassic = `
-      INSERT INTO u166478150_pokeguess.ClassicDaily (id, Daily)
+      INSERT INTO PokeGuess.ClassicDaily (id, Daily)
       VALUES (?, ?);
     `;
     const insertQueryShadow = `
-      INSERT INTO u166478150_pokeguess.ShadowDaily (id, Daily)
+      INSERT INTO PokeGuess.ShadowDaily (id, Daily)
       VALUES (?, ?);
     `;
     const insertQueryShiny = `
-      INSERT INTO u166478150_pokeguess.ShinyDaily (id, Daily)
+      INSERT INTO PokeGuess.ShinyDaily (id, Daily)
       VALUES (?, ?);
     `;
 

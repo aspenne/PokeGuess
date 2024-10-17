@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import PokemonCard from '../components/PokemonCard'
 import Autocomplete from '../components/AutocompletePokedex'
+import Footer from '../components/Footer'
+import Navbar from '../components/Navbar'
+import PokemonCard from '../components/PokemonCard'
 
 interface Pokemon {
   pokedexId: string;
@@ -30,7 +30,7 @@ export default function Pokedex() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
   useEffect(() => {
-    fetch('https://pokeguess.up.railway.app/api/Pkmns')
+    fetch('http://pokeguess.fr:3000/api/Pkmns')
     .then(response => response.json())
   .then(data => {
       setPokemons(data);
