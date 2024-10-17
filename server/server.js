@@ -9,7 +9,7 @@ dotenv.config();
 const port = process.env.PORT || 3000;
 
 const corsOptions = {
-  origin: 'http://pokeguess.fr', // Remplacez par votre domaine front-end
+  origin: ['http://pokeguess.fr', 'http://www.pokeguess.fr'],
   methods: 'GET,HEAD',
 };
 
